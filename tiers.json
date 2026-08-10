@@ -13,6 +13,7 @@
   "ATOMIC-CHRONICLE-v4.0-A-world-you-want-or-a-world-of-worlds-": {"tier":"A","verified":"meta","why":"Duplicate shell of the v4.0 description, near-empty."},
   "Summary-Of-repos-Memory-linker":         {"tier":"A","verified":"readme","why":"A verified map of every repo on the account, built for Zeus AI, rendered as a Three.js data centre where each machine opens its repo. Verified from fresh clones per the Live-Reference Principle on 2026-07-12 — and stale within a month, which is why this page rebuilds itself."},
   "orchestra":                              {"tier":"A","verified":"meta","why":"Public archive of daily response logs. Appends every day, keeps everything."},
+  "accumulation-sort":                      {"tier":"A","verified":"code","why":"This page. Re-reads the account every morning without being asked, appends what it found to history.jsonl, and never rewrites a prior line. It qualifies under its own criterion, which is the only reason it is allowed to apply it."},
 
   "the-current":                            {"tier":"B","verified":"meta","why":"An autonomous deterministic civilization in a spectator world. Runs entirely without a player; cross-session retention unproven."},
   "livi-organism":                          {"tier":"B","verified":"meta","why":"Metabolism, growth, decay, bonding, recovery — explicitly persistent and explicitly changed by time away. The closest thing here to a creature that notices you were gone."},
