@@ -77,15 +77,24 @@ def build():
     today = datetime.date.today().isoformat()
     counts = {k: sum(1 for x in rows if x["tier"] == k) for k in ORDER}
 
+    # Append-only: a line is never rewritten. If the numbers for today have not
+    # moved, no line is added — an unchanged day is not an event. When they have,
+    # a second line for the same date is appended and the reader below keeps the
+    # latest one per date, so the record stays honest without being edited.
     hist_path = ROOT / "history.jsonl"
-    history = []
+    raw = []
     if hist_path.exists():
-        history = [json.loads(l) for l in hist_path.read_text("utf-8").splitlines() if l.strip()]
-    if not history or history[-1]["date"] != today:
-        entry = {"date": today, "total": len(rows), "counts": counts}
-        history.append(entry)
+        raw = [json.loads(l) for l in hist_path.read_text("utf-8").splitlines() if l.strip()]
+    entry = {"date": today, "total": len(rows), "counts": counts}
+    if not raw or raw[-1]["total"] != entry["total"] or raw[-1]["counts"] != entry["counts"]:
         with hist_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(entry) + "\n")
+        raw.append(entry)
+
+    by_date = {}
+    for e in raw:
+        by_date[e["date"]] = e
+    history = [by_date[d] for d in sorted(by_date)]
 
     tpl = (ROOT / "template.html").read_text("utf-8")
     page = (tpl
