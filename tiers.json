@@ -1,93 +1,428 @@
 {
-  "_doc": "Tier judgments. tier: A accumulates | B living-but-unproven | C place/tool/material | D written record | E stub. verified: 'code' = file tree or source inspected, 'readme' = README read, 'meta' = description/size only. Repos absent from this file appear on the page as UNSORTED.",
-
-  "persistent-memory-substrate":            {"tier":"A","verified":"readme","why":"State persists, new state is added, nothing is removed. The criterion itself, stated as a system class — and the first repo on the account."},
-  "Keava-Owent":                            {"tier":"A","verified":"readme","why":"A persistent, live-reference, resource-accountable agent loop. Runs continuously, generates its own work from gaps in its own knowledge, meters what it consumes, and reports to its operator unprompted. The faithful implementation of four of your own papers, with two unsolved problems left as honest empty slots rather than faked with proxies."},
-  "zeus-ai":                                {"tier":"A","verified":"code","why":"131 files: ledger, memory, heartbeat, workers, Docker. A local FastAPI/React workbench over Ollama with local RAG — plus a training/ path for from-scratch Zeus-Tiny weights. A small model with no datacenter, already started."},
-  "autonomous-agent-os":                    {"tier":"A","verified":"meta","why":"Supervisor, workers, durable execution, critic lane, task ledger. Durable execution is retention; the ledger is the legible record."},
-  "ai-heartbeat-engine":                    {"tier":"A","verified":"meta","why":"Portable substrate for autonomous multi-AI work on one machine, with a human stop-channel that never goes away. Runs without you by design."},
-  "pam-continuum":                          {"tier":"A","verified":"code","why":"Snapshots, state.json, heartbeat, scheduled workflows. Evergreen provenance-first workspace — the same shape as zeus-ai at a quarter the size."},
-  "ATOMIC-CHRONICLE-v4.0-A-World-You-Want-Or-a-World-of-Worlds": {"tier":"A","verified":"meta","why":"Append-only execution substrate recording immutable actions across independent worlds. The fullest version of the ledger idea."},
-  "Atomic-World-Chronicle-3.7":             {"tier":"A","verified":"meta","why":"Prior revision of the same substrate."},
-  "Atomic-Chronicle-Memory-Chain-":         {"tier":"A","verified":"meta","why":"Local append-only ledger plus wallet, a game and an optional robot on one chain — one record, several worlds."},
-  "ATOMIC-CHRONICLE-v4.0-A-world-you-want-or-a-world-of-worlds-": {"tier":"A","verified":"meta","why":"Duplicate shell of the v4.0 description, near-empty."},
-  "Summary-Of-repos-Memory-linker":         {"tier":"A","verified":"readme","why":"A verified map of every repo on the account, built for Zeus AI, rendered as a Three.js data centre where each machine opens its repo. Verified from fresh clones per the Live-Reference Principle on 2026-07-12 — and stale within a month, which is why this page rebuilds itself."},
-  "orchestra":                              {"tier":"A","verified":"meta","why":"Public archive of daily response logs. Appends every day, keeps everything."},
-  "accumulation-sort":                      {"tier":"A","verified":"code","why":"This page. Re-reads the account every morning without being asked, appends what it found to history.jsonl, and never rewrites a prior line. It qualifies under its own criterion, which is the only reason it is allowed to apply it."},
-
-  "the-current":                            {"tier":"B","verified":"meta","why":"An autonomous deterministic civilization in a spectator world. Runs entirely without a player; cross-session retention unproven."},
-  "livi-organism":                          {"tier":"B","verified":"meta","why":"Metabolism, growth, decay, bonding, recovery — explicitly persistent and explicitly changed by time away. The closest thing here to a creature that notices you were gone."},
-  "ashgrove-npc-online":                    {"tier":"B","verified":"meta","why":"A living town where NPCs and online players share one world: jobs, households, growth. Persistence layer known to be partly unapplied."},
-  "rustfall":                               {"tier":"B","verified":"meta","why":"Roaming worker and hostile robots, shamblers, an NPC job economy. Autonomous agents, session-scoped world."},
-  "fable-survival":                         {"tier":"B","verified":"code","why":"Not just a game: Supabase cloud save, agent docs and a heartbeat sync prompt. World state survives the session, so it clears the retention bar most of the C tier misses."},
-  "The-Free-Online-Neighborhood-":          {"tier":"B","verified":"code","why":"Drizzle ORM, a worker and scheduled workflows — a shared neighbourhood with a real database behind it."},
-  "Pirate-World-Sea-Of-Fortune-":           {"tier":"B","verified":"code","why":"Supabase-backed sea world; state outlives the tab."},
-  "AETHERSPAN-v1.1-Anonymous-Teleoperation-Bridge": {"tier":"B","verified":"meta","why":"Local-first bridge mapping controller input to a device and returning state and receipts. Receipts are a record; persistence unclear."},
-  "Reflector-To-API-Bridges-":              {"tier":"B","verified":"meta","why":"Connects an existing AETHERSPAN endpoint outward. Plumbing for the above."},
-
-  "heartbeat-observatory":                  {"tier":"C","verified":"meta","why":"The flagship: a live open place to watch systems, host projects and play. Beautifully built, and identical when you come back."},
-  "MindGames":                              {"tier":"C","verified":"meta","why":"Live recursive worlds, traversable screens, folding architecture, cross-reality causality. The most conceptually ambitious renderer here."},
-  "showcase-world":                         {"tier":"C","verified":"meta","why":"Texture-forward major-city showcase with deterministic grid labels and free-roam inspection."},
-  "northstar-addressable-world":            {"tier":"C","verified":"meta","why":"First-person parkour game and addressable-world engine proof."},
-  "wasteland-commons":                      {"tier":"C","verified":"meta","why":"CC0 cooperative wasteland game with deterministic grid inspection and a multiplayer relay."},
-  "surface-material-lab":                   {"tier":"C","verified":"meta","why":"Standalone lab for testing real photographic surface materials. Pure render research."},
-  "asset-pack-ue-threejs-blender-unity":    {"tier":"C","verified":"meta","why":"38 CC0 modular building and prop assets across four engines. Material, not system."},
-  "tessera-worldkit":                       {"tier":"C","verified":"meta","why":"Ships the placement contract, not just the meshes — the most reusable thing in this tier."},
-  "spectral-gt-rs":                         {"tier":"C","verified":"meta","why":"Detailed CC0 car asset with an interactive showcase."},
-  "Movie-Theater-Three.js-Asset-":          {"tier":"C","verified":"code","why":"Theater asset with a Playwright test rig, feeding Heartbeat Observatory's cinema."},
-  "World-Printer-Lab-For-3D-Worlds":        {"tier":"C","verified":"code","why":"World generation lab with a version inventory."},
-  "worldbuilding-lab":                      {"tier":"C","verified":"code","why":"Worldbuilding doctrine v2/v3 plus texture and manifest discipline. A style guide with a renderer attached."},
-  "SYL-Full-Game":                          {"tier":"C","verified":"meta","why":"Space You Land at world scale: planets, seamless surface-to-space, modular ships, factions."},
-  "SpaceYouLand":                           {"tier":"C","verified":"meta","why":"The Unreal vertical slice of the same."},
-  "SYL-Neighborhood":                       {"tier":"C","verified":"meta","why":"Neighbourhood variant of SYL."},
-  "SYL-Testing-pvp":                        {"tier":"C","verified":"code","why":"Nine files around a single server.js — a PvP test bed."},
-  "rift-clash":                             {"tier":"C","verified":"meta","why":"Browser MOBA, 16 champions, procedural art and audio pipeline."},
-  "Free-Game-Hub":                          {"tier":"C","verified":"code","why":"187 files behind a games.json index. A shelf, not a system."},
-  "Kurearthis":                             {"tier":"C","verified":"code","why":"Unreal project with an accumulating BUILDLOG and archive, a world model and a charter. The build process keeps a record; the game does not."},
-  "New-Age-Of-War":                         {"tier":"C","verified":"code","why":"Unreal C++ war game."},
-  "cyber-trench-overdrive":                 {"tier":"C","verified":"meta","why":"Cyberpunk endless trench flyer."},
-  "the-defender-3d":                        {"tier":"C","verified":"meta","why":"3D courtroom strategy simulator with a reactive courtroom."},
-  "the-necklace-show":                      {"tier":"C","verified":"meta","why":"Interactive story and one-prompt cinematic production experiment."},
-  "aetherforge-threejs-mod-studio":         {"tier":"C","verified":"meta","why":"Asset mod-pack editor and cinematic ruin showcase."},
-  "cinematic-inspection-lab":               {"tier":"C","verified":"code","why":"Asset registry, constraints, grid, scene and sequence manifests, QA report — record-keeping as discipline, not runtime retention."},
-  "Circuit-Sim-3D-Mobile-Lab-v2":           {"tier":"C","verified":"code","why":"Mobile circuit simulator, single page."},
-  "market-architect":                       {"tier":"C","verified":"code","why":"TypeScript monorepo with vitest and no persistence layer."},
-  "Jaron-Game-World-Foundation":            {"tier":"C","verified":"code","why":"Shared foundation with a registry.json and agent instructions — a parts bin for the world projects."},
-  "Air-Vehicles-":                          {"tier":"C","verified":"code","why":"Vite/TS flight vehicles, deployed to Vercel."},
-  "THE-SHIFTING":                           {"tier":"C","verified":"code","why":"Vite/TypeScript app with a deploy workflow. No persistence."},
-  "vibecoding-training-grounds-":           {"tier":"C","verified":"code","why":"Newest repo on the account. Vite/TS with agent instructions and a deploy workflow."},
-  "direct-binary-emission-system":          {"tier":"C","verified":"meta","why":"Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE. An instrument, not a world."},
-  "Phone-AI-App-builds":                    {"tier":"C","verified":"code","why":"Single index.html of phone-built apps behind a deploy workflow."},
-  "Framing-Lens":                           {"tier":"C","verified":"readme","why":"The Perspective exercise as a working app. Stores sessions, but only runs when someone is there."},
-  "Pictures-screenshots":                   {"tier":"C","verified":"meta","why":"Media library made readable to AI collaborators."},
-  "President-Sim":                          {"tier":"C","verified":"meta","why":"Choice-based presidential simulation. The account's only fork."},
-  "reality-skin-engine":                    {"tier":"C","verified":"code","why":"Design principles, system architecture, terminology and decision log — a specification with a skinning engine attached."},
-
-  "live-reference-principle":               {"tier":"D","verified":"readme","why":"Constraints and signals are only valid while connected to what they reference; frozen references become gestures. The acceptance test for both tiers above, and the reason this page rebuilds itself."},
-  "THE-ENVIRONMENT-CONSTRAINT-INTELLIGENCE-HYPOTHESIS-ECIH-": {"tier":"D","verified":"readme","why":"Intelligence as self-maintenance under constraint. Five testable predictions; the closing unfalsifiable argument is the weak part."},
-  "YES-NO-Environment-Perspective-You-Myself-Observer-Paradox": {"tier":"D","verified":"readme","why":"Twelve chapters, written Dec 2024 to Feb 2025, primarily for your children."},
-  "Perspective-Environmental-framework-Exercise": {"tier":"D","verified":"readme","why":"Six ambiguous prompts where the choice is a decoy and the reasoning is the signal. Run across nine models — one of the few repos here that produced data."},
-  "memory-as-spatial-arrangement":          {"tier":"D","verified":"meta","why":"Memory as spatial arrangement rather than linear sequence, with a packing-math result as the missing piece. Implemented inside Keava-Owent."},
-  "emergence-structure-that-grows":         {"tier":"D","verified":"meta","why":"Internal structure in trained systems as grown and discovered, not designed."},
-  "Emergence-Forge-By-GPT-5.6-Luna":        {"tier":"D","verified":"code","why":"A cellular-automata lab, conjecture lab and pattern miner with recorded results files. Research that produced output."},
-  "ai-workforce":                           {"tier":"D","verified":"readme","why":"Five files, all documentation. A specification for hiring consumer AI apps as co-workers with no server and no always-on computer — a procedure, not a running system."},
-  "ai-workforce-xai-openai":                {"tier":"D","verified":"meta","why":"The two-provider write-up of the same workforce procedure."},
-  "Neuro-consciousness-and-chemistry-":     {"tier":"D","verified":"meta","why":"Described only as 'Complicated'."},
-  "The-Engine-Of-Division-":                {"tier":"D","verified":"meta","why":"How rivalry from politics to pop culture operates as a distraction mechanism."},
-  "THEY-NEVER-LEFT":                        {"tier":"D","verified":"meta","why":"Pattern-recognition hypothesis on ancient civilizations."},
-  "The-Structural-Conflict":                {"tier":"D","verified":"meta","why":"Timeline of historical patterns and possibilities."},
-  "theater-vs-record-trump-drug-clemency":  {"tier":"D","verified":"meta","why":"Policy analysis: stated position versus documented record."},
-  "Pieces-Of-My-Life-":                     {"tier":"D","verified":"code","why":"A single README. Personal record."},
-  "The-Last-Theory.-":                      {"tier":"D","verified":"code","why":"README and licence only."},
-  "The-Thinking-Gym":                       {"tier":"D","verified":"code","why":"Sixteen markdown files, no code. Exercises."},
-  "Orchestra-Financial-":                   {"tier":"D","verified":"code","why":"Two files: README and licence. A placeholder for the financial arm of Orchestra."},
-
-  "EchosOrchestra":                         {"tier":"E","verified":"code","why":"Empty."},
-  "physics-lab-sandbox":                    {"tier":"E","verified":"meta","why":"Described but never committed."},
-  "signal-pebble-echo-2917":                {"tier":"E","verified":"meta","why":"Connector push verification."},
-  "grok-test-dummy-penguin-2026":           {"tier":"E","verified":"meta","why":"Test repo created by Grok."},
-  "testing-ai-workforce-loop":              {"tier":"E","verified":"meta","why":"Loop test."},
-  "heartbeat-test":                         {"tier":"E","verified":"meta","why":"Heartbeat test."},
-  "ai-anonymous-task-force":                {"tier":"E","verified":"meta","why":"Stub."},
-  "Online-NPC-City-":                       {"tier":"E","verified":"code","why":"Sixteen files around a single index.html — a scaffold of the living-town idea, superseded by ashgrove-npc-online."}
+ "_doc": "Tier judgments. tier: A accumulates | B living-but-unproven | C place/tool/material | D written record | E stub. verified: 'code' = file tree or source inspected, 'readme' = README read, 'meta' = description/size only. Repos absent from this file appear on the page as UNSORTED.",
+ "persistent-memory-substrate": {
+  "tier": "A",
+  "verified": "readme",
+  "why": "State persists, new state is added, nothing is removed. The criterion itself, stated as a system class — and the first repo on the account."
+ },
+ "Keava-Owent": {
+  "tier": "A",
+  "verified": "readme",
+  "why": "A persistent, live-reference, resource-accountable agent loop. Runs continuously, generates its own work from gaps in its own knowledge, meters what it consumes, and reports to its operator unprompted. The faithful implementation of four of your own papers, with two unsolved problems left as honest empty slots rather than faked with proxies."
+ },
+ "zeus-ai": {
+  "tier": "A",
+  "verified": "code",
+  "why": "131 files: ledger, memory, heartbeat, workers, Docker. A local FastAPI/React workbench over Ollama with local RAG — plus a training/ path for from-scratch Zeus-Tiny weights. A small model with no datacenter, already started."
+ },
+ "autonomous-agent-os": {
+  "tier": "D",
+  "verified": "code",
+  "why": "Two files. The README is explicit: the architecture is locked to a six-layer stack and “no production code is committed yet.” A design document for a system that would accumulate, not a system that does."
+ },
+ "ai-heartbeat-engine": {
+  "tier": "D",
+  "verified": "code",
+  "why": "Seven files, all documentation. Describes a real self-continuing loop whose entire operating surface is prompts and scheduled tasks rather than code — so the loop may well run, but the repo is its specification, not its implementation."
+ },
+ "pam-continuum": {
+  "tier": "A",
+  "verified": "code",
+  "why": "Snapshots, state.json, heartbeat, scheduled workflows. Evergreen provenance-first workspace — the same shape as zeus-ai at a quarter the size."
+ },
+ "ATOMIC-CHRONICLE-v4.0-A-World-You-Want-Or-a-World-of-Worlds": {
+  "tier": "A",
+  "verified": "code",
+  "why": "Real implementation in atomic_chronicle_v4.py — a neutral immutable ledger for actions and state across independent worlds, built for long-term continuity."
+ },
+ "Atomic-World-Chronicle-3.7": {
+  "tier": "A",
+  "verified": "readme",
+  "why": "Prior revision. Immutable state tracking and cross-world interaction, same substrate one version back."
+ },
+ "Atomic-Chronicle-Memory-Chain-": {
+  "tier": "A",
+  "verified": "code",
+  "why": "Working Python prototype: local blockchain ledger, tokenised wallet, an Asteroids-style game and an optional Arduino robot, where in-game actions commit blocks and trigger real-world commands. One ledger spanning a game and a machine."
+ },
+ "ATOMIC-CHRONICLE-v4.0-A-world-you-want-or-a-world-of-worlds-": {
+  "tier": "E",
+  "verified": "code",
+  "why": "Two files, README only. Duplicate shell of the v4.0 description with no implementation."
+ },
+ "Summary-Of-repos-Memory-linker": {
+  "tier": "A",
+  "verified": "readme",
+  "why": "A verified map of every repo on the account, built for Zeus AI, rendered as a Three.js data centre where each machine opens its repo. Verified from fresh clones per the Live-Reference Principle on 2026-07-12 — and stale within a month, which is why this page rebuilds itself."
+ },
+ "orchestra": {
+  "tier": "A",
+  "verified": "code",
+  "why": "Seventy-seven files around an append-only tracking/events.jsonl. Each cycle asks five AI systems eight questions, preserves every capture, hands the corpus to two synthesizers, and tracks falsifiable signals until they are confirmed, invalidated, decayed or left unresolved. It keeps its failures too."
+ },
+ "accumulation-sort": {
+  "tier": "A",
+  "verified": "code",
+  "why": "This page. Re-reads the account every morning without being asked, appends what it found to history.jsonl, and never rewrites a prior line. It qualifies under its own criterion, which is the only reason it is allowed to apply it."
+ },
+ "the-current": {
+  "tier": "A",
+  "verified": "code",
+  "why": "188 files with a full persistence layer — database, schema and storage modules, a Supabase edge function that ticks the world server-side, and migrations that archive shared world eras. A deterministic civilization that keeps running and keeps its history when every browser is closed. The strongest single realisation of the idea on the account."
+ },
+ "livi-organism": {
+  "tier": "A",
+  "verified": "code",
+  "why": "Drizzle plus Supabase migrations for revisioned cloud memory, with a cloud-persistence test suite. The organism's state survives the session, the device and the browser — it is genuinely different when you come back."
+ },
+ "ashgrove-npc-online": {
+  "tier": "B",
+  "verified": "code",
+  "why": "A living town where NPCs and players share one world, jobs and households included. Its own README is honest that the repo is currently the town plus a scaffold — the systems are the destination, not the state."
+ },
+ "rustfall": {
+  "tier": "B",
+  "verified": "code",
+  "why": "Roaming worker and hostile robots, an NPC job economy, 125 files. Saves via src/game/save.ts — local to the player, so the world persists for you but has no life of its own between visits."
+ },
+ "fable-survival": {
+  "tier": "B",
+  "verified": "code",
+  "why": "Not just a game: Supabase cloud save, agent docs and a heartbeat sync prompt. World state survives the session, so it clears the retention bar most of the C tier misses."
+ },
+ "The-Free-Online-Neighborhood-": {
+  "tier": "B",
+  "verified": "code",
+  "why": "Drizzle ORM, a worker and scheduled workflows — a shared neighbourhood with a real database behind it."
+ },
+ "Pirate-World-Sea-Of-Fortune-": {
+  "tier": "B",
+  "verified": "code",
+  "why": "Supabase-backed sea world; state outlives the tab."
+ },
+ "AETHERSPAN-v1.1-Anonymous-Teleoperation-Bridge": {
+  "tier": "A",
+  "verified": "readme",
+  "why": "Logs every action into an append-only, hash-chained SQLite ledger while bridging controller input to a real device. Three files, and one of them is a working chronicle."
+ },
+ "Reflector-To-API-Bridges-": {
+  "tier": "C",
+  "verified": "readme",
+  "why": "A stateless translator: turns domain commands into AETHERSPAN WebSocket frames and returns the response. Holds nothing."
+ },
+ "heartbeat-observatory": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "The flagship: a live open place to watch systems, host projects and play. Beautifully built, and identical when you come back."
+ },
+ "MindGames": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Live recursive worlds, traversable screens, folding architecture, cross-reality causality. The most conceptually ambitious renderer here."
+ },
+ "showcase-world": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Texture-forward major-city showcase with deterministic grid labels and free-roam inspection."
+ },
+ "northstar-addressable-world": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "First-person parkour game and addressable-world engine proof."
+ },
+ "wasteland-commons": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "CC0 cooperative wasteland game with deterministic grid inspection and a multiplayer relay."
+ },
+ "surface-material-lab": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Standalone lab for testing real photographic surface materials. Pure render research."
+ },
+ "asset-pack-ue-threejs-blender-unity": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "38 CC0 modular building and prop assets across four engines. Material, not system."
+ },
+ "tessera-worldkit": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Ships the placement contract, not just the meshes — the most reusable thing in this tier."
+ },
+ "spectral-gt-rs": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Detailed CC0 car asset with an interactive showcase."
+ },
+ "Movie-Theater-Three.js-Asset-": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Theater asset with a Playwright test rig, feeding Heartbeat Observatory's cinema."
+ },
+ "World-Printer-Lab-For-3D-Worlds": {
+  "tier": "C",
+  "verified": "code",
+  "why": "World generation lab with a version inventory."
+ },
+ "worldbuilding-lab": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Worldbuilding doctrine v2/v3 plus texture and manifest discipline. A style guide with a renderer attached."
+ },
+ "SYL-Full-Game": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Space You Land at world scale: planets, seamless surface-to-space, modular ships, factions."
+ },
+ "SpaceYouLand": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "The Unreal vertical slice of the same."
+ },
+ "SYL-Neighborhood": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Neighbourhood variant of SYL."
+ },
+ "SYL-Testing-pvp": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Nine files around a single server.js — a PvP test bed."
+ },
+ "rift-clash": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Browser MOBA, 16 champions, procedural art and audio pipeline."
+ },
+ "Free-Game-Hub": {
+  "tier": "C",
+  "verified": "code",
+  "why": "187 files behind a games.json index. A shelf, not a system."
+ },
+ "Kurearthis": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Unreal project with an accumulating BUILDLOG and archive, a world model and a charter. The build process keeps a record; the game does not."
+ },
+ "New-Age-Of-War": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Unreal C++ war game."
+ },
+ "cyber-trench-overdrive": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Cyberpunk endless trench flyer."
+ },
+ "the-defender-3d": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "3D courtroom strategy simulator with a reactive courtroom."
+ },
+ "the-necklace-show": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Interactive story and one-prompt cinematic production experiment."
+ },
+ "aetherforge-threejs-mod-studio": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Asset mod-pack editor and cinematic ruin showcase."
+ },
+ "cinematic-inspection-lab": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Asset registry, constraints, grid, scene and sequence manifests, QA report — record-keeping as discipline, not runtime retention."
+ },
+ "Circuit-Sim-3D-Mobile-Lab-v2": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Mobile circuit simulator, single page."
+ },
+ "market-architect": {
+  "tier": "C",
+  "verified": "code",
+  "why": "TypeScript monorepo with vitest and no persistence layer."
+ },
+ "Jaron-Game-World-Foundation": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Shared foundation with a registry.json and agent instructions — a parts bin for the world projects."
+ },
+ "Air-Vehicles-": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Vite/TS flight vehicles, deployed to Vercel."
+ },
+ "THE-SHIFTING": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Vite/TypeScript app with a deploy workflow. No persistence."
+ },
+ "vibecoding-training-grounds-": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Newest repo on the account. Vite/TS with agent instructions and a deploy workflow."
+ },
+ "direct-binary-emission-system": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE. An instrument, not a world."
+ },
+ "Phone-AI-App-builds": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Single index.html of phone-built apps behind a deploy workflow."
+ },
+ "Framing-Lens": {
+  "tier": "C",
+  "verified": "readme",
+  "why": "The Perspective exercise as a working app. Stores sessions, but only runs when someone is there."
+ },
+ "Pictures-screenshots": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Media library made readable to AI collaborators."
+ },
+ "President-Sim": {
+  "tier": "C",
+  "verified": "meta",
+  "why": "Choice-based presidential simulation. The account's only fork."
+ },
+ "reality-skin-engine": {
+  "tier": "C",
+  "verified": "code",
+  "why": "Design principles, system architecture, terminology and decision log — a specification with a skinning engine attached."
+ },
+ "live-reference-principle": {
+  "tier": "D",
+  "verified": "readme",
+  "why": "Constraints and signals are only valid while connected to what they reference; frozen references become gestures. The acceptance test for both tiers above, and the reason this page rebuilds itself."
+ },
+ "THE-ENVIRONMENT-CONSTRAINT-INTELLIGENCE-HYPOTHESIS-ECIH-": {
+  "tier": "D",
+  "verified": "readme",
+  "why": "Intelligence as self-maintenance under constraint. Five testable predictions; the closing unfalsifiable argument is the weak part."
+ },
+ "YES-NO-Environment-Perspective-You-Myself-Observer-Paradox": {
+  "tier": "D",
+  "verified": "readme",
+  "why": "Twelve chapters, written Dec 2024 to Feb 2025, primarily for your children."
+ },
+ "Perspective-Environmental-framework-Exercise": {
+  "tier": "D",
+  "verified": "readme",
+  "why": "Six ambiguous prompts where the choice is a decoy and the reasoning is the signal. Run across nine models — one of the few repos here that produced data."
+ },
+ "memory-as-spatial-arrangement": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "Memory as spatial arrangement rather than linear sequence, with a packing-math result as the missing piece. Implemented inside Keava-Owent."
+ },
+ "emergence-structure-that-grows": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "Internal structure in trained systems as grown and discovered, not designed."
+ },
+ "Emergence-Forge-By-GPT-5.6-Luna": {
+  "tier": "D",
+  "verified": "code",
+  "why": "A cellular-automata lab, conjecture lab and pattern miner with recorded results files. Research that produced output."
+ },
+ "ai-workforce": {
+  "tier": "D",
+  "verified": "readme",
+  "why": "Five files, all documentation. A specification for hiring consumer AI apps as co-workers with no server and no always-on computer — a procedure, not a running system."
+ },
+ "ai-workforce-xai-openai": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "The two-provider write-up of the same workforce procedure."
+ },
+ "Neuro-consciousness-and-chemistry-": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "Described only as 'Complicated'."
+ },
+ "The-Engine-Of-Division-": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "How rivalry from politics to pop culture operates as a distraction mechanism."
+ },
+ "THEY-NEVER-LEFT": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "Pattern-recognition hypothesis on ancient civilizations."
+ },
+ "The-Structural-Conflict": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "Timeline of historical patterns and possibilities."
+ },
+ "theater-vs-record-trump-drug-clemency": {
+  "tier": "D",
+  "verified": "meta",
+  "why": "Policy analysis: stated position versus documented record."
+ },
+ "Pieces-Of-My-Life-": {
+  "tier": "D",
+  "verified": "code",
+  "why": "A single README. Personal record."
+ },
+ "The-Last-Theory.-": {
+  "tier": "D",
+  "verified": "code",
+  "why": "README and licence only."
+ },
+ "The-Thinking-Gym": {
+  "tier": "D",
+  "verified": "code",
+  "why": "Sixteen markdown files, no code. Exercises."
+ },
+ "Orchestra-Financial-": {
+  "tier": "D",
+  "verified": "code",
+  "why": "Two files: README and licence. A placeholder for the financial arm of Orchestra."
+ },
+ "EchosOrchestra": {
+  "tier": "E",
+  "verified": "code",
+  "why": "Empty."
+ },
+ "physics-lab-sandbox": {
+  "tier": "E",
+  "verified": "meta",
+  "why": "Described but never committed."
+ },
+ "signal-pebble-echo-2917": {
+  "tier": "E",
+  "verified": "meta",
+  "why": "Connector push verification."
+ },
+ "grok-test-dummy-penguin-2026": {
+  "tier": "E",
+  "verified": "meta",
+  "why": "Test repo created by Grok."
+ },
+ "testing-ai-workforce-loop": {
+  "tier": "E",
+  "verified": "meta",
+  "why": "Loop test."
+ },
+ "heartbeat-test": {
+  "tier": "E",
+  "verified": "meta",
+  "why": "Heartbeat test."
+ },
+ "ai-anonymous-task-force": {
+  "tier": "E",
+  "verified": "meta",
+  "why": "Stub."
+ },
+ "Online-NPC-City-": {
+  "tier": "E",
+  "verified": "code",
+  "why": "Sixteen files around a single index.html — a scaffold of the living-town idea, superseded by ashgrove-npc-online."
+ }
 }
