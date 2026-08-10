@@ -1,14 +1,14 @@
 {
  "_doc": "Tier judgments. tier: A accumulates | B living-but-unproven | C place/tool/material | D written record | E stub. verified: 'code' = file tree or source inspected, 'readme' = README read, 'meta' = description/size only. Repos absent from this file appear on the page as UNSORTED.",
  "persistent-memory-substrate": {
-  "tier": "A",
-  "verified": "readme",
-  "why": "State persists, new state is added, nothing is removed. The criterion itself, stated as a system class — and the first repo on the account."
+  "tier": "D",
+  "verified": "code",
+  "why": "One file. The repo contains the README and nothing else — the substrate is stated, never implemented. It remains the clearest statement of the criterion on the account, and it is a statement."
  },
  "Keava-Owent": {
-  "tier": "A",
-  "verified": "readme",
-  "why": "A persistent, live-reference, resource-accountable agent loop. Runs continuously, generates its own work from gaps in its own knowledge, meters what it consumes, and reports to its operator unprompted. The faithful implementation of four of your own papers, with two unsolved problems left as honest empty slots rather than faked with proxies."
+  "tier": "D",
+  "verified": "code",
+  "why": "main.py assembles fifteen subsystems — store, continuity, loop, live-reference engine, consumption and contribution ledgers, memory graph, recall, spark generator, membrane, approval queue, receipts, transport. None of those modules are committed; the import fails on the first line. What is here is the assembly, the tests, and config/membrane.yaml — a human-owned permission file the system reads and can never write, which is a corrigibility guarantee made concrete. An architecture of unusual quality, and not a running system."
  },
  "zeus-ai": {
   "tier": "A",
@@ -27,8 +27,8 @@
  },
  "pam-continuum": {
   "tier": "A",
-  "verified": "code",
-  "why": "Snapshots, state.json, heartbeat, scheduled workflows. Evergreen provenance-first workspace — the same shape as zeus-ai at a quarter the size."
+  "verified": "live",
+  "why": "Live on Project Heartbeat: pam_instances, pam_devices, threads and messages all carry rows. Its pam_action_ledger is still empty — the control plane exists and is connected, and has not yet recorded an action."
  },
  "ATOMIC-CHRONICLE-v4.0-A-World-You-Want-Or-a-World-of-Worlds": {
   "tier": "A",
@@ -37,8 +37,8 @@
  },
  "Atomic-World-Chronicle-3.7": {
   "tier": "A",
-  "verified": "readme",
-  "why": "Prior revision. Immutable state tracking and cross-world interaction, same substrate one version back."
+  "verified": "code",
+  "why": "A single 52KB implementation file named “ATOM Code 3.7”, no extension — which is why filename scans miss it. Immutable state tracking and cross-world interaction, actually written."
  },
  "Atomic-Chronicle-Memory-Chain-": {
   "tier": "A",
@@ -52,8 +52,8 @@
  },
  "Summary-Of-repos-Memory-linker": {
   "tier": "A",
-  "verified": "readme",
-  "why": "A verified map of every repo on the account, built for Zeus AI, rendered as a Three.js data centre where each machine opens its repo. Verified from fresh clones per the Live-Reference Principle on 2026-07-12 — and stale within a month, which is why this page rebuilds itself."
+  "verified": "code",
+  "why": "A machine-readable map of the whole account built for Zeus, verified from fresh clones plus live Vercel and Supabase state — explicitly not from READMEs — and rendered as a Three.js data centre. Generated 2026-07-12 and never regenerated, which is precisely the failure it was built to avoid."
  },
  "orchestra": {
   "tier": "A",
@@ -67,28 +67,28 @@
  },
  "the-current": {
   "tier": "A",
-  "verified": "code",
-  "why": "188 files with a full persistence layer — database, schema and storage modules, a Supabase edge function that ticks the world server-side, and migrations that archive shared world eras. A deterministic civilization that keeps running and keeps its history when every browser is closed. The strongest single realisation of the idea on the account."
+  "verified": "live",
+  "why": "Verified in the running database, not just in code: the_current_era_archives holds a retired era and the_current_era_entropy holds 66 replay inputs kept with it. An era of this civilization has already ended and been preserved. Ticked server-side by a Supabase edge function, so it advances with every browser closed. The criterion satisfied in production."
  },
  "livi-organism": {
-  "tier": "A",
-  "verified": "code",
-  "why": "Drizzle plus Supabase migrations for revisioned cloud memory, with a cloud-persistence test suite. The organism's state survives the session, the device and the browser — it is genuinely different when you come back."
+  "tier": "B",
+  "verified": "live",
+  "why": "The code carries Drizzle plus Supabase migrations for revisioned cloud memory and a cloud-persistence test suite — but no database on the account holds livi tables. The persistence is written and unapplied, so today the organism lives only in the browser it was opened in."
  },
  "ashgrove-npc-online": {
   "tier": "B",
-  "verified": "code",
-  "why": "A living town where NPCs and players share one world, jobs and households included. Its own README is honest that the repo is currently the town plus a scaffold — the systems are the destination, not the state."
+  "verified": "live",
+  "why": "The shared town is real in the database: world3_world holds the seed, founding plat, growth records, change log and a digest-verified snapshot, advanced only through world3_advance_day(). It retains — but nothing calls that function on a schedule, so the town only moves when someone moves it. Retention without continuation: exactly half the criterion."
  },
  "rustfall": {
   "tier": "B",
-  "verified": "code",
-  "why": "Roaming worker and hostile robots, an NPC job economy, 125 files. Saves via src/game/save.ts — local to the player, so the world persists for you but has no life of its own between visits."
+  "verified": "live",
+  "why": "Roaming robots and an NPC job economy across 125 files, with a local save and five rustfall_* cloud tables standing empty. The world persists for one player on one device; the shared version is provisioned and unused."
  },
  "fable-survival": {
-  "tier": "B",
-  "verified": "code",
-  "why": "Not just a game: Supabase cloud save, agent docs and a heartbeat sync prompt. World state survives the session, so it clears the retention bar most of the C tier misses."
+  "tier": "C",
+  "verified": "live",
+  "why": "Cloud save is implemented, and its Supabase project is INACTIVE — paused. Right now the cloud save cannot write, so what survives is whatever the browser kept."
  },
  "The-Free-Online-Neighborhood-": {
   "tier": "B",
@@ -96,19 +96,19 @@
   "why": "Drizzle ORM, a worker and scheduled workflows — a shared neighbourhood with a real database behind it."
  },
  "Pirate-World-Sea-Of-Fortune-": {
-  "tier": "B",
-  "verified": "code",
-  "why": "Supabase-backed sea world; state outlives the tab."
+  "tier": "C",
+  "verified": "live",
+  "why": "Supabase-backed in code; the project is INACTIVE and its tables were already empty when last inspected in July. The backend is provisioned, paused and unused."
  },
  "AETHERSPAN-v1.1-Anonymous-Teleoperation-Bridge": {
   "tier": "A",
-  "verified": "readme",
-  "why": "Logs every action into an append-only, hash-chained SQLite ledger while bridging controller input to a real device. Three files, and one of them is a working chronicle."
+  "verified": "code",
+  "why": "41KB of implementation in “AETHERSPAN CODE 1.1”. Bridges controller input to a real device and logs every action to an append-only hash-chained SQLite ledger."
  },
  "Reflector-To-API-Bridges-": {
   "tier": "C",
-  "verified": "readme",
-  "why": "A stateless translator: turns domain commands into AETHERSPAN WebSocket frames and returns the response. Holds nothing."
+  "verified": "code",
+  "why": "14KB of implementation in “Reflector Code”. Translates domain commands into AETHERSPAN frames and hands back the response. Stateless by design."
  },
  "heartbeat-observatory": {
   "tier": "C",
@@ -132,8 +132,8 @@
  },
  "wasteland-commons": {
   "tier": "B",
-  "verified": "code",
-  "why": "Server-authoritative world state with restore.mjs, world-state.mjs and a Supabase persistence layer — built to survive everyone leaving. Its README notes the production deployment is still instance-local, so the retention is implemented but not yet running as a shared world. Built for a parent and child to play together across phone and desktop."
+  "verified": "live",
+  "why": "Server-authoritative world state with restore and a live, healthy database — and every table has zero rows. Built to survive everyone leaving, and nobody has arrived yet."
  },
  "surface-material-lab": {
   "tier": "C",
@@ -222,8 +222,8 @@
  },
  "the-necklace-show": {
   "tier": "C",
-  "verified": "readme",
-  "why": "A fifteen-chapter cinematic web experience about a sailor who finds a necklace that reveals the memories held by objects and places. One of his books, published as a world instead of a manuscript."
+  "verified": "code",
+  "why": "An 86KB app.js behind a fifteen-chapter story about a necklace that reveals the memories held by objects — and a canonical-archive keeping the original one-prompt Kimi output, zip included, beside the version that grew from it. The never-delete pledge, applied inside a repo."
  },
  "aetherforge-threejs-mod-studio": {
   "tier": "C",
@@ -276,19 +276,19 @@
   "why": "Single index.html of phone-built apps behind a deploy workflow."
  },
  "Framing-Lens": {
-  "tier": "C",
-  "verified": "readme",
-  "why": "The Perspective exercise as a working app. Stores sessions, but only runs when someone is there."
+  "tier": "D",
+  "verified": "code",
+  "why": "Thirteen files: a prompt set, scoring engine, data model, routes, policy model, wireflow and roadmap — plus a package.json declaring Next and React, and not one source file. The app is fully specified and unbuilt."
  },
  "Pictures-screenshots": {
-  "tier": "C",
-  "verified": "readme",
-  "why": "A persistent public media archive: upload once, and any AI or collaborator can reference the raw URL without a re-upload. Quiet infrastructure that several other projects lean on."
+  "tier": "E",
+  "verified": "code",
+  "why": "Three files: a gallery viewer, a README, and an empty imgs/ directory. The archive other projects were told to reference has no images in it, so those raw URLs resolve to nothing."
  },
  "President-Sim": {
   "tier": "C",
-  "verified": "readme",
-  "why": "Twenty scenarios drawn from real 2025–26 events, each decision moving five pillars of a presidency. The account's only fork, hosted on Heartbeat."
+  "verified": "code",
+  "why": "One 35KB index.html carrying twenty scenarios drawn from real 2025–26 events, each decision moving five pillars. Complete and self-contained."
  },
  "reality-skin-engine": {
   "tier": "C",
@@ -332,13 +332,13 @@
  },
  "ai-workforce": {
   "tier": "D",
-  "verified": "readme",
-  "why": "Five files, all documentation. A specification for hiring consumer AI apps as co-workers with no server and no always-on computer — a procedure, not a running system."
+  "verified": "code",
+  "why": "Five files, all documentation. A procedure for running scheduled work through consumer AI apps with no server and no always-on machine — real, and described rather than implemented."
  },
  "ai-workforce-xai-openai": {
   "tier": "D",
-  "verified": "readme",
-  "why": "Four files. The two-provider write-up of the workforce loop — scheduled tasks on consumer apps that read live signals, check themselves, and restyle their own public surface daily. A procedure, described."
+  "verified": "code",
+  "why": "Four files. The two-provider write-up of the same procedure."
  },
  "Neuro-consciousness-and-chemistry-": {
   "tier": "D",

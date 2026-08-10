@@ -53,7 +53,8 @@ TIERS = {
     "?": ("Unsorted", "Not yet judged",
           "Created since the last time tiers.json was updated. Listed here rather than guessed at."),
 }
-VERIF = {"code": "source read", "readme": "README read", "meta": "metadata only"}
+VERIF = {"live": "live system checked", "code": "source read",
+         "readme": "README read", "meta": "metadata only"}
 
 
 def build():
