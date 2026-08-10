@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Accumulation Sort — JaronKBragg7337</title>
+<meta name="description" content="Every repo on the account, sorted by one question: does it run without you, keep what happened, and show it when you come back.">
+<style>
+  :root{
+    --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F3F1;
+    --ink:#131A17; --ink-2:#57655F; --ink-3:#84948D;
+    --rule:#DCE4E0;
+    --accum:#12735A; --living:#3F7B95; --place:#7E8C86; --record:#8A6A3C; --stub:#A9564A; --unsorted:#6B5C8A;
+    --accum-bg:#E4F0EB; --living-bg:#E3EDF2; --place-bg:#EBEEEC; --record-bg:#F1EAE0; --stub-bg:#F3E4E1; --unsorted-bg:#EAE6F1;
+    --shadow:0 1px 2px rgba(16,32,26,.05), 0 8px 24px -18px rgba(16,32,26,.35);
+    --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI Variable Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"Cascadia Mono","Cascadia Code",Consolas,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0D1110; --panel:#141A18; --panel-2:#1A2220;
+      --ink:#E6ECE9; --ink-2:#9AA9A2; --ink-3:#71827B;
+      --rule:#242E2A;
+      --accum:#43C29A; --living:#74B6D4; --place:#8B9A93; --record:#C79A5C; --stub:#D58473; --unsorted:#A594C9;
+      --accum-bg:#132A23; --living-bg:#132430; --place-bg:#1B2320; --record-bg:#2A2115; --stub-bg:#2E1B18; --unsorted-bg:#221E2E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F3F1;
+    --ink:#131A17; --ink-2:#57655F; --ink-3:#84948D; --rule:#DCE4E0;
+    --accum:#12735A; --living:#3F7B95; --place:#7E8C86; --record:#8A6A3C; --stub:#A9564A; --unsorted:#6B5C8A;
+    --accum-bg:#E4F0EB; --living-bg:#E3EDF2; --place-bg:#EBEEEC; --record-bg:#F1EAE0; --stub-bg:#F3E4E1; --unsorted-bg:#EAE6F1;
+    --shadow:0 1px 2px rgba(16,32,26,.05), 0 8px 24px -18px rgba(16,32,26,.35);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0D1110; --panel:#141A18; --panel-2:#1A2220;
+    --ink:#E6ECE9; --ink-2:#9AA9A2; --ink-3:#71827B; --rule:#242E2A;
+    --accum:#43C29A; --living:#74B6D4; --place:#8B9A93; --record:#C79A5C; --stub:#D58473; --unsorted:#A594C9;
+    --accum-bg:#132A23; --living-bg:#132430; --place-bg:#1B2320; --record-bg:#2A2115; --stub-bg:#2E1B18; --unsorted-bg:#221E2E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased;
+    padding:0 20px 96px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+
+  header.mast{padding:72px 0 40px; border-bottom:1px solid var(--rule);}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:0 0 22px;}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(34px,6vw,58px); line-height:1.04; letter-spacing:-.015em; margin:0 0 20px; text-wrap:balance;}
+  .standfirst{font-size:18px; color:var(--ink-2); margin:0; max-width:60ch; text-wrap:pretty;}
+  .criterion{margin:32px 0 0; padding:18px 22px; background:var(--panel); border:1px solid var(--rule); border-left:3px solid var(--accum); box-shadow:var(--shadow); max-width:62ch;}
+  .criterion p{margin:0; font-size:15px; color:var(--ink-2);}
+  .criterion strong{color:var(--ink); font-weight:600;}
+
+  section{padding:52px 0 0;}
+  h2{font-family:var(--serif); font-weight:600; font-size:26px; letter-spacing:-.01em; margin:0 0 8px; text-wrap:balance;}
+  .sect-note{margin:0 0 26px; color:var(--ink-2); font-size:15px; max-width:64ch;}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule);}
+  .stat{background:var(--panel); padding:18px 18px 16px;}
+  .stat .v{font-family:var(--mono); font-size:26px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.1;}
+  .stat .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:6px;}
+  .stat .d{font-family:var(--mono); font-size:11px; margin-top:4px;}
+
+  .tl-frame{border:1px solid var(--rule); background:var(--panel); padding:24px 20px 16px; overflow-x:auto; box-shadow:var(--shadow);}
+  .tl{display:flex; gap:10px; align-items:flex-end; min-width:640px;}
+  .tl-month{flex:1; display:flex; flex-direction:column; gap:3px; align-items:center; min-width:0;}
+  .tl-stack{display:flex; flex-direction:column-reverse; gap:3px; width:100%;}
+  .tick{height:11px; border-radius:1px; width:100%;}
+  .tl-label{font-family:var(--mono); font-size:10px; color:var(--ink-3); letter-spacing:.05em; padding-top:9px; border-top:1px solid var(--rule); width:100%; text-align:center;}
+  .tl-count{font-family:var(--mono); font-size:10px; color:var(--ink-3); padding-bottom:6px; font-variant-numeric:tabular-nums;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px 22px; margin-top:20px;}
+  .lg{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--ink-2);}
+  .sw{width:11px; height:11px; border-radius:1px; flex:none;}
+
+  .drift{border:1px solid var(--rule); background:var(--panel); padding:22px; box-shadow:var(--shadow);}
+  .drift table{width:100%; border-collapse:collapse; font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums;}
+  .drift th{text-align:right; font-weight:600; color:var(--ink-3); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; padding:0 0 10px; border-bottom:1px solid var(--rule);}
+  .drift th:first-child, .drift td:first-child{text-align:left;}
+  .drift td{padding:9px 0; border-bottom:1px solid var(--rule); text-align:right; color:var(--ink-2);}
+  .drift tr:last-child td{border-bottom:none; color:var(--ink);}
+  .drift .delta{font-size:11px; color:var(--ink-3);}
+
+  .tier{margin-top:44px;}
+  .tier-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding-bottom:12px; border-bottom:2px solid currentColor;}
+  .tier-head .tag{font-family:var(--mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; padding:4px 9px; border-radius:2px; font-weight:600;}
+  .tier-head h3{font-family:var(--serif); font-size:23px; font-weight:600; margin:0; color:var(--ink); letter-spacing:-.01em;}
+  .tier-head .cnt{font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-left:auto; font-variant-numeric:tabular-nums;}
+  .verdict{margin:14px 0 6px; color:var(--ink-2); font-size:15px; max-width:68ch;}
+
+  .rows{display:flex; flex-direction:column;}
+  .row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 18px; padding:13px 0; border-bottom:1px solid var(--rule); align-items:baseline;}
+  .row .nm{font-family:var(--mono); font-size:13.5px; font-weight:600; word-break:break-word;}
+  .row .meta{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right;}
+  .row .why{grid-column:1/-1; font-size:14px; color:var(--ink-2); max-width:72ch; margin-top:2px;}
+  .vf{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; padding:2px 6px; border:1px solid var(--rule); border-radius:2px; color:var(--ink-3); margin-left:8px; white-space:nowrap;}
+  .vf.code{color:var(--accum); border-color:currentColor;}
+
+  a{color:inherit; text-decoration-color:var(--rule); text-underline-offset:3px;}
+  a:hover{text-decoration-color:currentColor;}
+  a:focus-visible{outline:2px solid var(--accum); outline-offset:3px;}
+
+  .close{margin-top:56px; padding:30px; background:var(--panel); border:1px solid var(--rule); border-top:3px solid var(--accum); box-shadow:var(--shadow);}
+  .close p{color:var(--ink-2); font-size:15.5px; max-width:66ch; margin:0 0 12px;}
+  .close p:last-child{margin-bottom:0;}
+  .close strong{color:var(--ink);}
+
+  footer{margin-top:44px; padding-top:20px; border-top:1px solid var(--rule); font-size:13.5px; color:var(--ink-3); max-width:72ch;}
+  footer strong{color:var(--ink-2);}
+  footer p{margin:0 0 10px;}
+
+  @media (max-width:620px){
+    header.mast{padding:48px 0 32px;}
+    .row{grid-template-columns:1fr;}
+    .row .meta{text-align:left;}
+    .close{padding:24px 20px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">JaronKBragg7337 · 84 public repos · since 2025-12-13 · rebuilt 2026-08-10</p>
+    <h1>The Accumulation Sort</h1>
+    <p class="standfirst">Every repo on the account, run against one question — not whether it's good, but whether it's the thing you actually want.</p>
+    <div class="criterion">
+      <p><strong>The criterion.</strong> A system qualifies if it (1) runs without you, (2) is <em>changed</em> by having run, and (3) that change is legible when you come back. Continuation plus memory plus consequence. A screensaver passes the first test and fails the other two.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Where it stands</h2>
+    <p class="sect-note">Read live from the GitHub API on every rebuild. Nothing here is a snapshot.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section>
+    <h2>By month created</h2>
+    <p class="sect-note">Each tile is one repo, coloured by tier, stacked into the month it was created.</p>
+    <div class="tl-frame"><div class="tl" id="tl"></div></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section id="drift-sec" hidden>
+    <h2>Drift</h2>
+    <p class="sect-note">What this page has watched happen since it started watching. One row per rebuild — the page keeps its own record, which is the same standard it holds everything else to.</p>
+    <div class="drift"><table id="drift"></table></div>
+  </section>
+
+  <section id="tiers"></section>
+
+  <div class="close">
+    <p><strong>The line worth feeding is the one that keeps getting started and dropped.</strong> Persistent Memory Substrate → Atomic Chronicle → AI Heartbeat Engine and Autonomous Agent OS → Keava Owent → Zeus → PAM Continuum. One idea, several attempts, each abandoned near the point where it began to work.</p>
+    <p>Nothing in the Place tier is wasted — it is the render layer that line never had. The projects with a foot in both halves are the ones that hold attention longest.</p>
+    <p><strong>The narrow version:</strong> one accumulating substrate, one world drawn on top of it, one live external constraint feeding it. All three exist already, in separate repos, not wired together.</p>
+  </div>
+
+  <footer>
+    <p><strong>How this is sorted.</strong> Tier judgments live in <a href="https://github.com/JaronKBragg7337/accumulation-sort/blob/main/tiers.json">tiers.json</a> and are applied to whatever the API returns today. Each row carries how far verification went: <span class="vf code">source read</span> means the file tree or source was inspected, <span class="vf">README read</span> means the README was, <span class="vf">metadata only</span> means description and size alone — those are the likeliest misfiles.</p>
+    <p>Repos created since the last edit to tiers.json appear under <strong>Unsorted</strong> rather than being guessed at. Private repos are invisible to the API and are not counted.</p>
+    <p>Rebuilt daily by GitHub Actions. A page about systems that keep their own record would be a gesture if it did not keep one — see the <a href="https://github.com/JaronKBragg7337/live-reference-principle">Live-Reference Principle</a>.</p>
+  </footer>
+
+</div>
+
+<script>
+const ROWS = [{"name": "persistent-memory-substrate", "created": "2025-12-13", "pushed": "2025-12-13", "size": 5, "tier": "A", "verified": "readme", "why": "State persists, new state is added, nothing is removed. The criterion itself, stated as a system class — and the first repo on the account."}, {"name": "President-Sim", "created": "2025-12-13", "pushed": "2026-07-06", "size": 36, "tier": "C", "verified": "meta", "why": "Choice-based presidential simulation. The account's only fork."}, {"name": "Atomic-Chronicle-Memory-Chain-", "created": "2025-12-16", "pushed": "2025-12-16", "size": 13, "tier": "A", "verified": "meta", "why": "Local append-only ledger plus wallet, a game and an optional robot on one chain — one record, several worlds."}, {"name": "ATOMIC-CHRONICLE-v4.0-A-world-you-want-or-a-world-of-worlds-", "created": "2025-12-17", "pushed": "2025-12-17", "size": 1, "tier": "A", "verified": "meta", "why": "Duplicate shell of the v4.0 description, near-empty."}, {"name": "ATOMIC-CHRONICLE-v4.0-A-World-You-Want-Or-a-World-of-Worlds", "created": "2025-12-17", "pushed": "2025-12-17", "size": 48, "tier": "A", "verified": "meta", "why": "Append-only execution substrate recording immutable actions across independent worlds. The fullest version of the ledger idea."}, {"name": "Atomic-World-Chronicle-3.7", "created": "2025-12-17", "pushed": "2025-12-17", "size": 31, "tier": "A", "verified": "meta", "why": "Prior revision of the same substrate."}, {"name": "AETHERSPAN-v1.1-Anonymous-Teleoperation-Bridge", "created": "2025-12-17", "pushed": "2025-12-17", "size": 27, "tier": "B", "verified": "meta", "why": "Local-first bridge mapping controller input to a device and returning state and receipts. Receipts are a record; persistence unclear."}, {"name": "Reflector-To-API-Bridges-", "created": "2025-12-17", "pushed": "2025-12-17", "size": 9, "tier": "B", "verified": "meta", "why": "Connects an existing AETHERSPAN endpoint outward. Plumbing for the above."}, {"name": "The-Engine-Of-Division-", "created": "2025-12-22", "pushed": "2025-12-22", "size": 97, "tier": "D", "verified": "meta", "why": "How rivalry from politics to pop culture operates as a distraction mechanism."}, {"name": "Framing-Lens", "created": "2026-01-08", "pushed": "2026-01-09", "size": 30, "tier": "C", "verified": "readme", "why": "The Perspective exercise as a working app. Stores sessions, but only runs when someone is there."}, {"name": "Perspective-Environmental-framework-Exercise", "created": "2026-02-23", "pushed": "2026-02-23", "size": 23, "tier": "D", "verified": "readme", "why": "Six ambiguous prompts where the choice is a decoy and the reasoning is the signal. Run across nine models — one of the few repos here that produced data."}, {"name": "YES-NO-Environment-Perspective-You-Myself-Observer-Paradox", "created": "2026-02-23", "pushed": "2026-02-23", "size": 42, "tier": "D", "verified": "readme", "why": "Twelve chapters, written Dec 2024 to Feb 2025, primarily for your children."}, {"name": "Neuro-consciousness-and-chemistry-", "created": "2026-03-09", "pushed": "2026-03-09", "size": 20, "tier": "D", "verified": "meta", "why": "Described only as 'Complicated'."}, {"name": "THE-ENVIRONMENT-CONSTRAINT-INTELLIGENCE-HYPOTHESIS-ECIH-", "created": "2026-03-09", "pushed": "2026-03-09", "size": 10, "tier": "D", "verified": "readme", "why": "Intelligence as self-maintenance under constraint. Five testable predictions; the closing unfalsifiable argument is the weak part."}, {"name": "THEY-NEVER-LEFT", "created": "2026-03-12", "pushed": "2026-03-12", "size": 7, "tier": "D", "verified": "meta", "why": "Pattern-recognition hypothesis on ancient civilizations."}, {"name": "The-Structural-Conflict", "created": "2026-03-27", "pushed": "2026-03-27", "size": 25, "tier": "D", "verified": "meta", "why": "Timeline of historical patterns and possibilities."}, {"name": "EchosOrchestra", "created": "2026-04-24", "pushed": "2026-04-24", "size": 0, "tier": "E", "verified": "code", "why": "Empty."}, {"name": "signal-pebble-echo-2917", "created": "2026-05-10", "pushed": "2026-05-10", "size": 0, "tier": "E", "verified": "meta", "why": "Connector push verification."}, {"name": "grok-test-dummy-penguin-2026", "created": "2026-05-10", "pushed": "2026-05-10", "size": 1, "tier": "E", "verified": "meta", "why": "Test repo created by Grok."}, {"name": "memory-as-spatial-arrangement", "created": "2026-05-25", "pushed": "2026-05-26", "size": 61, "tier": "D", "verified": "meta", "why": "Memory as spatial arrangement rather than linear sequence, with a packing-math result as the missing piece. Implemented inside Keava-Owent."}, {"name": "emergence-structure-that-grows", "created": "2026-05-26", "pushed": "2026-05-26", "size": 10, "tier": "D", "verified": "meta", "why": "Internal structure in trained systems as grown and discovered, not designed."}, {"name": "live-reference-principle", "created": "2026-05-28", "pushed": "2026-05-28", "size": 10, "tier": "D", "verified": "readme", "why": "Constraints and signals are only valid while connected to what they reference; frozen references become gestures. The acceptance test for both tiers above, and the reason this page rebuilds itself."}, {"name": "Keava-Owent", "created": "2026-05-30", "pushed": "2026-05-30", "size": 67, "tier": "A", "verified": "readme", "why": "A persistent, live-reference, resource-accountable agent loop. Runs continuously, generates its own work from gaps in its own knowledge, meters what it consumes, and reports to its operator unprompted. The faithful implementation of four of your own papers, with two unsolved problems left as honest empty slots rather than faked with proxies."}, {"name": "theater-vs-record-trump-drug-clemency", "created": "2026-05-30", "pushed": "2026-05-30", "size": 12, "tier": "D", "verified": "meta", "why": "Policy analysis: stated position versus documented record."}, {"name": "ai-workforce-xai-openai", "created": "2026-05-31", "pushed": "2026-05-31", "size": 31, "tier": "D", "verified": "meta", "why": "The two-provider write-up of the same workforce procedure."}, {"name": "testing-ai-workforce-loop", "created": "2026-05-31", "pushed": "2026-05-31", "size": 0, "tier": "E", "verified": "meta", "why": "Loop test."}, {"name": "ai-workforce", "created": "2026-05-31", "pushed": "2026-06-01", "size": 64, "tier": "D", "verified": "readme", "why": "Five files, all documentation. A specification for hiring consumer AI apps as co-workers with no server and no always-on computer — a procedure, not a running system."}, {"name": "heartbeat-test", "created": "2026-06-01", "pushed": "2026-06-01", "size": 2, "tier": "E", "verified": "meta", "why": "Heartbeat test."}, {"name": "ai-anonymous-task-force", "created": "2026-06-02", "pushed": "2026-06-02", "size": 2, "tier": "E", "verified": "meta", "why": "Stub."}, {"name": "autonomous-agent-os", "created": "2026-06-03", "pushed": "2026-06-03", "size": 76, "tier": "A", "verified": "meta", "why": "Supervisor, workers, durable execution, critic lane, task ledger. Durable execution is retention; the ledger is the legible record."}, {"name": "ai-heartbeat-engine", "created": "2026-06-03", "pushed": "2026-06-03", "size": 21, "tier": "A", "verified": "meta", "why": "Portable substrate for autonomous multi-AI work on one machine, with a human stop-channel that never goes away. Runs without you by design."}, {"name": "heartbeat-observatory", "created": "2026-06-06", "pushed": "2026-08-07", "size": 19669, "tier": "C", "verified": "meta", "why": "The flagship: a live open place to watch systems, host projects and play. Beautifully built, and identical when you come back."}, {"name": "SYL-Testing-pvp", "created": "2026-06-07", "pushed": "2026-06-07", "size": 18, "tier": "C", "verified": "code", "why": "Nine files around a single server.js — a PvP test bed."}, {"name": "The-Last-Theory.-", "created": "2026-06-12", "pushed": "2026-06-12", "size": 6, "tier": "D", "verified": "code", "why": "README and licence only."}, {"name": "Pieces-Of-My-Life-", "created": "2026-06-12", "pushed": "2026-06-12", "size": 34, "tier": "D", "verified": "code", "why": "A single README. Personal record."}, {"name": "SpaceYouLand", "created": "2026-06-18", "pushed": "2026-06-20", "size": 529, "tier": "C", "verified": "meta", "why": "The Unreal vertical slice of the same."}, {"name": "Kurearthis", "created": "2026-06-20", "pushed": "2026-06-22", "size": 719, "tier": "C", "verified": "code", "why": "Unreal project with an accumulating BUILDLOG and archive, a world model and a charter. The build process keeps a record; the game does not."}, {"name": "reality-skin-engine", "created": "2026-06-30", "pushed": "2026-07-01", "size": 49, "tier": "C", "verified": "code", "why": "Design principles, system architecture, terminology and decision log — a specification with a skinning engine attached."}, {"name": "zeus-ai", "created": "2026-07-01", "pushed": "2026-07-12", "size": 485, "tier": "A", "verified": "code", "why": "131 files: ledger, memory, heartbeat, workers, Docker. A local FastAPI/React workbench over Ollama with local RAG — plus a training/ path for from-scratch Zeus-Tiny weights. A small model with no datacenter, already started."}, {"name": "Free-Game-Hub", "created": "2026-07-02", "pushed": "2026-07-02", "size": 1918, "tier": "C", "verified": "code", "why": "187 files behind a games.json index. A shelf, not a system."}, {"name": "fable-survival", "created": "2026-07-02", "pushed": "2026-07-09", "size": 211, "tier": "B", "verified": "code", "why": "Not just a game: Supabase cloud save, agent docs and a heartbeat sync prompt. World state survives the session, so it clears the retention bar most of the C tier misses."}, {"name": "Pictures-screenshots", "created": "2026-07-03", "pushed": "2026-07-03", "size": 11, "tier": "C", "verified": "meta", "why": "Media library made readable to AI collaborators."}, {"name": "physics-lab-sandbox", "created": "2026-07-03", "pushed": "2026-07-03", "size": 0, "tier": "E", "verified": "meta", "why": "Described but never committed."}, {"name": "SYL-Full-Game", "created": "2026-07-03", "pushed": "2026-07-09", "size": 1029, "tier": "C", "verified": "meta", "why": "Space You Land at world scale: planets, seamless surface-to-space, modular ships, factions."}, {"name": "World-Printer-Lab-For-3D-Worlds", "created": "2026-07-09", "pushed": "2026-07-24", "size": 312, "tier": "C", "verified": "code", "why": "World generation lab with a version inventory."}, {"name": "Pirate-World-Sea-Of-Fortune-", "created": "2026-07-11", "pushed": "2026-07-11", "size": 6350, "tier": "B", "verified": "code", "why": "Supabase-backed sea world; state outlives the tab."}, {"name": "Summary-Of-repos-Memory-linker", "created": "2026-07-11", "pushed": "2026-07-12", "size": 272, "tier": "A", "verified": "readme", "why": "A verified map of every repo on the account, built for Zeus AI, rendered as a Three.js data centre where each machine opens its repo. Verified from fresh clones per the Live-Reference Principle on 2026-07-12 — and stale within a month, which is why this page rebuilds itself."}, {"name": "New-Age-Of-War", "created": "2026-07-12", "pushed": "2026-07-13", "size": 137, "tier": "C", "verified": "code", "why": "Unreal C++ war game."}, {"name": "Orchestra-Financial-", "created": "2026-07-12", "pushed": "2026-07-12", "size": 560, "tier": "D", "verified": "code", "why": "Two files: README and licence. A placeholder for the financial arm of Orchestra."}, {"name": "the-current", "created": "2026-07-13", "pushed": "2026-07-24", "size": 5227, "tier": "B", "verified": "meta", "why": "An autonomous deterministic civilization in a spectator world. Runs entirely without a player; cross-session retention unproven."}, {"name": "the-defender-3d", "created": "2026-07-14", "pushed": "2026-07-14", "size": 46, "tier": "C", "verified": "meta", "why": "3D courtroom strategy simulator with a reactive courtroom."}, {"name": "market-architect", "created": "2026-07-14", "pushed": "2026-07-14", "size": 94, "tier": "C", "verified": "code", "why": "TypeScript monorepo with vitest and no persistence layer."}, {"name": "cyber-trench-overdrive", "created": "2026-07-16", "pushed": "2026-07-16", "size": 7, "tier": "C", "verified": "meta", "why": "Cyberpunk endless trench flyer."}, {"name": "Circuit-Sim-3D-Mobile-Lab-v2", "created": "2026-07-17", "pushed": "2026-07-17", "size": 242, "tier": "C", "verified": "code", "why": "Mobile circuit simulator, single page."}, {"name": "the-necklace-show", "created": "2026-07-18", "pushed": "2026-07-18", "size": 414, "tier": "C", "verified": "meta", "why": "Interactive story and one-prompt cinematic production experiment."}, {"name": "orchestra", "created": "2026-07-18", "pushed": "2026-07-19", "size": 478, "tier": "A", "verified": "meta", "why": "Public archive of daily response logs. Appends every day, keeps everything."}, {"name": "Emergence-Forge-By-GPT-5.6-Luna", "created": "2026-07-22", "pushed": "2026-07-22", "size": 10, "tier": "D", "verified": "code", "why": "A cellular-automata lab, conjecture lab and pattern miner with recorded results files. Research that produced output."}, {"name": "asset-pack-ue-threejs-blender-unity", "created": "2026-07-22", "pushed": "2026-07-25", "size": 140543, "tier": "C", "verified": "meta", "why": "38 CC0 modular building and prop assets across four engines. Material, not system."}, {"name": "tessera-worldkit", "created": "2026-07-25", "pushed": "2026-07-25", "size": 5935, "tier": "C", "verified": "meta", "why": "Ships the placement contract, not just the meshes — the most reusable thing in this tier."}, {"name": "rift-clash", "created": "2026-07-26", "pushed": "2026-07-26", "size": 199, "tier": "C", "verified": "meta", "why": "Browser MOBA, 16 champions, procedural art and audio pipeline."}, {"name": "aetherforge-threejs-mod-studio", "created": "2026-07-27", "pushed": "2026-07-27", "size": 46, "tier": "C", "verified": "meta", "why": "Asset mod-pack editor and cinematic ruin showcase."}, {"name": "livi-organism", "created": "2026-07-29", "pushed": "2026-07-30", "size": 2141, "tier": "B", "verified": "meta", "why": "Metabolism, growth, decay, bonding, recovery — explicitly persistent and explicitly changed by time away. The closest thing here to a creature that notices you were gone."}, {"name": "The-Thinking-Gym", "created": "2026-07-30", "pushed": "2026-07-31", "size": 24, "tier": "D", "verified": "code", "why": "Sixteen markdown files, no code. Exercises."}, {"name": "Phone-AI-App-builds", "created": "2026-07-30", "pushed": "2026-07-30", "size": 32, "tier": "C", "verified": "code", "why": "Single index.html of phone-built apps behind a deploy workflow."}, {"name": "Jaron-Game-World-Foundation", "created": "2026-07-30", "pushed": "2026-07-31", "size": 33, "tier": "C", "verified": "code", "why": "Shared foundation with a registry.json and agent instructions — a parts bin for the world projects."}, {"name": "spectral-gt-rs", "created": "2026-08-01", "pushed": "2026-08-01", "size": 26699, "tier": "C", "verified": "meta", "why": "Detailed CC0 car asset with an interactive showcase."}, {"name": "pam-continuum", "created": "2026-08-01", "pushed": "2026-08-09", "size": 75, "tier": "A", "verified": "code", "why": "Snapshots, state.json, heartbeat, scheduled workflows. Evergreen provenance-first workspace — the same shape as zeus-ai at a quarter the size."}, {"name": "cinematic-inspection-lab", "created": "2026-08-01", "pushed": "2026-08-01", "size": 59, "tier": "C", "verified": "code", "why": "Asset registry, constraints, grid, scene and sequence manifests, QA report — record-keeping as discipline, not runtime retention."}, {"name": "surface-material-lab", "created": "2026-08-01", "pushed": "2026-08-01", "size": 82565, "tier": "C", "verified": "meta", "why": "Standalone lab for testing real photographic surface materials. Pure render research."}, {"name": "showcase-world", "created": "2026-08-01", "pushed": "2026-08-02", "size": 27722, "tier": "C", "verified": "meta", "why": "Texture-forward major-city showcase with deterministic grid labels and free-roam inspection."}, {"name": "northstar-addressable-world", "created": "2026-08-02", "pushed": "2026-08-02", "size": 27883, "tier": "C", "verified": "meta", "why": "First-person parkour game and addressable-world engine proof."}, {"name": "wasteland-commons", "created": "2026-08-02", "pushed": "2026-08-02", "size": 55849, "tier": "C", "verified": "meta", "why": "CC0 cooperative wasteland game with deterministic grid inspection and a multiplayer relay."}, {"name": "rustfall", "created": "2026-08-03", "pushed": "2026-08-08", "size": 40536, "tier": "B", "verified": "meta", "why": "Roaming worker and hostile robots, shamblers, an NPC job economy. Autonomous agents, session-scoped world."}, {"name": "worldbuilding-lab", "created": "2026-08-03", "pushed": "2026-08-04", "size": 3297, "tier": "C", "verified": "code", "why": "Worldbuilding doctrine v2/v3 plus texture and manifest discipline. A style guide with a renderer attached."}, {"name": "Air-Vehicles-", "created": "2026-08-03", "pushed": "2026-08-03", "size": 39, "tier": "C", "verified": "code", "why": "Vite/TS flight vehicles, deployed to Vercel."}, {"name": "SYL-Neighborhood", "created": "2026-08-04", "pushed": "2026-08-04", "size": 25, "tier": "C", "verified": "meta", "why": "Neighbourhood variant of SYL."}, {"name": "The-Free-Online-Neighborhood-", "created": "2026-08-04", "pushed": "2026-08-04", "size": 8127, "tier": "B", "verified": "code", "why": "Drizzle ORM, a worker and scheduled workflows — a shared neighbourhood with a real database behind it."}, {"name": "Online-NPC-City-", "created": "2026-08-04", "pushed": "2026-08-04", "size": 142, "tier": "E", "verified": "code", "why": "Sixteen files around a single index.html — a scaffold of the living-town idea, superseded by ashgrove-npc-online."}, {"name": "ashgrove-npc-online", "created": "2026-08-04", "pushed": "2026-08-06", "size": 352, "tier": "B", "verified": "meta", "why": "A living town where NPCs and online players share one world: jobs, households, growth. Persistence layer known to be partly unapplied."}, {"name": "THE-SHIFTING", "created": "2026-08-05", "pushed": "2026-08-05", "size": 29, "tier": "C", "verified": "code", "why": "Vite/TypeScript app with a deploy workflow. No persistence."}, {"name": "Movie-Theater-Three.js-Asset-", "created": "2026-08-08", "pushed": "2026-08-08", "size": 136, "tier": "C", "verified": "code", "why": "Theater asset with a Playwright test rig, feeding Heartbeat Observatory's cinema."}, {"name": "MindGames", "created": "2026-08-08", "pushed": "2026-08-09", "size": 9019, "tier": "C", "verified": "meta", "why": "Live recursive worlds, traversable screens, folding architecture, cross-reality causality. The most conceptually ambitious renderer here."}, {"name": "vibecoding-training-grounds-", "created": "2026-08-09", "pushed": "2026-08-09", "size": 123, "tier": "C", "verified": "code", "why": "Newest repo on the account. Vite/TS with agent instructions and a deploy workflow."}, {"name": "direct-binary-emission-system", "created": "2026-08-09", "pushed": "2026-08-09", "size": 113, "tier": "C", "verified": "meta", "why": "Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE. An instrument, not a world."}];
+const TIERS = {"A": ["Accumulates", "Substrate — built to retain", "Passes all three tests: runs unattended, keeps what happened, and the record is readable afterward. This is the line the account keeps returning to and keeps dropping."], "B": ["Half", "Living world — runs without you, retention unproven", "Autonomous behaviour is real: agents act with no player present. What is not established is whether the world is different tomorrow because of what happened today. One persistence layer from the tier above."], "C": ["Place", "Place, tool or material — the same when you return", "The largest group, and the best-looking work here. None of it accumulates and none of it is meant to. This is where the render problem got solved; it should now be a supply of parts, not a source of projects."], "D": ["Record", "Written principle — a timestamp, not a system", "Not supposed to accumulate; these are the extracted principles themselves. The Live-Reference Principle and ECIH are load-bearing for the top two tiers and should be read as specification, not as essays."], "E": ["Stub", "Test, stub or empty", "Connector checks and abandoned shells. Listed for completeness."], "?": ["Unsorted", "Not yet judged", "Created since the last time tiers.json was updated. Listed here rather than guessed at."]};
+const VERIF = {"code": "source read", "readme": "README read", "meta": "metadata only"};
+const HISTORY = [{"date": "2026-08-10", "total": 84, "counts": {"A": 12, "B": 9, "C": 37, "D": 18, "E": 8, "?": 0}}];
+const OWNER = "JaronKBragg7337";
+const ORDER = ["A","B","C","D","E","?"];
+const COLOR = {A:"var(--accum)",B:"var(--living)",C:"var(--place)",D:"var(--record)",E:"var(--stub)","?":"var(--unsorted)"};
+const BG = {A:"var(--accum-bg)",B:"var(--living-bg)",C:"var(--place-bg)",D:"var(--record-bg)",E:"var(--stub-bg)","?":"var(--unsorted-bg)"};
+const count = k => ROWS.filter(r => r.tier === k).length;
+const el = (t, cls) => { const n = document.createElement(t); if (cls) n.className = cls; return n; };
+
+/* ---- stats ---- */
+const live = ROWS.filter(r => (Date.now() - Date.parse(r.pushed)) < 30*864e5).length;
+const stats = [
+  [ROWS.length, "repos", "var(--ink)"],
+  [count("A"), "accumulate", "var(--accum)"],
+  [count("B"), "half", "var(--living)"],
+  [count("C"), "places", "var(--place)"],
+  [count("D") + count("E"), "records & stubs", "var(--ink-3)"],
+  [live, "pushed in 30 days", "var(--ink)"],
+];
+const sh = document.getElementById("stats");
+stats.forEach(([v,k,c]) => {
+  const d = el("div","stat");
+  const vv = el("div","v"); vv.textContent = v; vv.style.color = c;
+  const kk = el("div","k"); kk.textContent = k;
+  d.append(vv,kk); sh.appendChild(d);
+});
+
+/* ---- timeline ---- */
+const months = [...new Set(ROWS.map(r => r.created.slice(0,7)))].sort();
+const MN = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+const tl = document.getElementById("tl");
+months.forEach(m => {
+  const inM = ROWS.filter(r => r.created.slice(0,7) === m)
+                  .sort((a,b) => ORDER.indexOf(a.tier) - ORDER.indexOf(b.tier));
+  const col = el("div","tl-month");
+  const cnt = el("div","tl-count"); cnt.textContent = inM.length;
+  const stack = el("div","tl-stack");
+  inM.forEach(r => {
+    const t = el("div","tick");
+    t.style.background = COLOR[r.tier];
+    t.title = r.name + " — " + TIERS[r.tier][0];
+    stack.appendChild(t);
+  });
+  const lab = el("div","tl-label");
+  lab.textContent = MN[+m.slice(5,7)-1] + (m.slice(5,7) === "01" ? " ’" + m.slice(2,4) : "");
+  col.append(cnt, stack, lab);
+  tl.appendChild(col);
+});
+
+const lgd = document.getElementById("legend");
+ORDER.forEach(k => {
+  if (!count(k)) return;
+  const d = el("div","lg");
+  const s = el("span","sw"); s.style.background = COLOR[k];
+  const t = el("span");
+  t.innerHTML = '<strong style="color:var(--ink);font-weight:600">' + TIERS[k][0] + '</strong> · ' + count(k);
+  d.append(s,t); lgd.appendChild(d);
+});
+
+/* ---- drift ---- */
+if (HISTORY.length > 1) {
+  document.getElementById("drift-sec").hidden = false;
+  const t = document.getElementById("drift");
+  const cols = ORDER.filter(k => HISTORY.some(h => h.counts[k]));
+  let head = "<tr><th>Rebuild</th><th>Total</th>" + cols.map(k =>
+    '<th style="color:' + COLOR[k] + '">' + TIERS[k][0] + "</th>").join("") + "</tr>";
+  const rowsHtml = HISTORY.slice(-14).map((h, i, arr) => {
+    const prev = arr[i-1];
+    const dTot = prev ? h.total - prev.total : 0;
+    const badge = d => d ? ' <span class="delta">' + (d > 0 ? "+" : "") + d + "</span>" : "";
+    return "<tr><td>" + h.date + "</td><td>" + h.total + badge(dTot) + "</td>" +
+      cols.map(k => "<td>" + (h.counts[k] || 0) +
+        badge(prev ? (h.counts[k]||0) - (prev.counts[k]||0) : 0) + "</td>").join("") + "</tr>";
+  }).join("");
+  t.innerHTML = head + rowsHtml;
+}
+
+/* ---- tiers ---- */
+const host = document.getElementById("tiers");
+ORDER.forEach(k => {
+  const items = ROWS.filter(r => r.tier === k);
+  if (!items.length) return;
+  const [tag, title, verdict] = TIERS[k];
+  const sec = el("div","tier"); sec.style.color = COLOR[k];
+  const head = el("div","tier-head");
+  head.innerHTML =
+    '<span class="tag" style="background:' + BG[k] + ';color:' + COLOR[k] + '">' + tag + "</span>" +
+    "<h3>" + title + "</h3>" +
+    '<span class="cnt">' + items.length + " repos</span>";
+  const v = el("p","verdict"); v.textContent = verdict;
+  const rows = el("div","rows");
+  items.forEach(r => {
+    const row = el("div","row");
+    const kb = r.size >= 1024 ? (r.size/1024).toFixed(1) + " MB" : r.size + " KB";
+    const vf = r.verified
+      ? '<span class="vf ' + (r.verified === "code" ? "code" : "") + '">' + VERIF[r.verified] + "</span>"
+      : "";
+    row.innerHTML =
+      '<div class="nm"><a href="https://github.com/' + OWNER + "/" + encodeURIComponent(r.name) +
+        '" target="_blank" rel="noopener">' + r.name + "</a>" + vf + "</div>" +
+      '<div class="meta">' + r.created + " · " + kb + "</div>" +
+      '<div class="why">' + r.why + "</div>";
+    rows.appendChild(row);
+  });
+  sec.append(head, v, rows);
+  host.appendChild(sec);
+});
+</script>
+</body>
+</html>

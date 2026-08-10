@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Accumulation Sort — __OWNER__</title>
+<meta name="description" content="Every repo on the account, sorted by one question: does it run without you, keep what happened, and show it when you come back.">
+<style>
+  :root{
+    --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F3F1;
+    --ink:#131A17; --ink-2:#57655F; --ink-3:#84948D;
+    --rule:#DCE4E0;
+    --accum:#12735A; --living:#3F7B95; --place:#7E8C86; --record:#8A6A3C; --stub:#A9564A; --unsorted:#6B5C8A;
+    --accum-bg:#E4F0EB; --living-bg:#E3EDF2; --place-bg:#EBEEEC; --record-bg:#F1EAE0; --stub-bg:#F3E4E1; --unsorted-bg:#EAE6F1;
+    --shadow:0 1px 2px rgba(16,32,26,.05), 0 8px 24px -18px rgba(16,32,26,.35);
+    --serif:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI Variable Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"Cascadia Mono","Cascadia Code",Consolas,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0D1110; --panel:#141A18; --panel-2:#1A2220;
+      --ink:#E6ECE9; --ink-2:#9AA9A2; --ink-3:#71827B;
+      --rule:#242E2A;
+      --accum:#43C29A; --living:#74B6D4; --place:#8B9A93; --record:#C79A5C; --stub:#D58473; --unsorted:#A594C9;
+      --accum-bg:#132A23; --living-bg:#132430; --place-bg:#1B2320; --record-bg:#2A2115; --stub-bg:#2E1B18; --unsorted-bg:#221E2E;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F3F1;
+    --ink:#131A17; --ink-2:#57655F; --ink-3:#84948D; --rule:#DCE4E0;
+    --accum:#12735A; --living:#3F7B95; --place:#7E8C86; --record:#8A6A3C; --stub:#A9564A; --unsorted:#6B5C8A;
+    --accum-bg:#E4F0EB; --living-bg:#E3EDF2; --place-bg:#EBEEEC; --record-bg:#F1EAE0; --stub-bg:#F3E4E1; --unsorted-bg:#EAE6F1;
+    --shadow:0 1px 2px rgba(16,32,26,.05), 0 8px 24px -18px rgba(16,32,26,.35);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0D1110; --panel:#141A18; --panel-2:#1A2220;
+    --ink:#E6ECE9; --ink-2:#9AA9A2; --ink-3:#71827B; --rule:#242E2A;
+    --accum:#43C29A; --living:#74B6D4; --place:#8B9A93; --record:#C79A5C; --stub:#D58473; --unsorted:#A594C9;
+    --accum-bg:#132A23; --living-bg:#132430; --place-bg:#1B2320; --record-bg:#2A2115; --stub-bg:#2E1B18; --unsorted-bg:#221E2E;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased;
+    padding:0 20px 96px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+
+  header.mast{padding:72px 0 40px; border-bottom:1px solid var(--rule);}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:0 0 22px;}
+  h1{font-family:var(--serif); font-weight:600; font-size:clamp(34px,6vw,58px); line-height:1.04; letter-spacing:-.015em; margin:0 0 20px; text-wrap:balance;}
+  .standfirst{font-size:18px; color:var(--ink-2); margin:0; max-width:60ch; text-wrap:pretty;}
+  .criterion{margin:32px 0 0; padding:18px 22px; background:var(--panel); border:1px solid var(--rule); border-left:3px solid var(--accum); box-shadow:var(--shadow); max-width:62ch;}
+  .criterion p{margin:0; font-size:15px; color:var(--ink-2);}
+  .criterion strong{color:var(--ink); font-weight:600;}
+
+  section{padding:52px 0 0;}
+  h2{font-family:var(--serif); font-weight:600; font-size:26px; letter-spacing:-.01em; margin:0 0 8px; text-wrap:balance;}
+  .sect-note{margin:0 0 26px; color:var(--ink-2); font-size:15px; max-width:64ch;}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule);}
+  .stat{background:var(--panel); padding:18px 18px 16px;}
+  .stat .v{font-family:var(--mono); font-size:26px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.1;}
+  .stat .k{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:6px;}
+  .stat .d{font-family:var(--mono); font-size:11px; margin-top:4px;}
+
+  .tl-frame{border:1px solid var(--rule); background:var(--panel); padding:24px 20px 16px; overflow-x:auto; box-shadow:var(--shadow);}
+  .tl{display:flex; gap:10px; align-items:flex-end; min-width:640px;}
+  .tl-month{flex:1; display:flex; flex-direction:column; gap:3px; align-items:center; min-width:0;}
+  .tl-stack{display:flex; flex-direction:column-reverse; gap:3px; width:100%;}
+  .tick{height:11px; border-radius:1px; width:100%;}
+  .tl-label{font-family:var(--mono); font-size:10px; color:var(--ink-3); letter-spacing:.05em; padding-top:9px; border-top:1px solid var(--rule); width:100%; text-align:center;}
+  .tl-count{font-family:var(--mono); font-size:10px; color:var(--ink-3); padding-bottom:6px; font-variant-numeric:tabular-nums;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px 22px; margin-top:20px;}
+  .lg{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--ink-2);}
+  .sw{width:11px; height:11px; border-radius:1px; flex:none;}
+
+  .drift{border:1px solid var(--rule); background:var(--panel); padding:22px; box-shadow:var(--shadow);}
+  .drift table{width:100%; border-collapse:collapse; font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums;}
+  .drift th{text-align:right; font-weight:600; color:var(--ink-3); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; padding:0 0 10px; border-bottom:1px solid var(--rule);}
+  .drift th:first-child, .drift td:first-child{text-align:left;}
+  .drift td{padding:9px 0; border-bottom:1px solid var(--rule); text-align:right; color:var(--ink-2);}
+  .drift tr:last-child td{border-bottom:none; color:var(--ink);}
+  .drift .delta{font-size:11px; color:var(--ink-3);}
+
+  .tier{margin-top:44px;}
+  .tier-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding-bottom:12px; border-bottom:2px solid currentColor;}
+  .tier-head .tag{font-family:var(--mono); font-size:11px; letter-spacing:.13em; text-transform:uppercase; padding:4px 9px; border-radius:2px; font-weight:600;}
+  .tier-head h3{font-family:var(--serif); font-size:23px; font-weight:600; margin:0; color:var(--ink); letter-spacing:-.01em;}
+  .tier-head .cnt{font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-left:auto; font-variant-numeric:tabular-nums;}
+  .verdict{margin:14px 0 6px; color:var(--ink-2); font-size:15px; max-width:68ch;}
+
+  .rows{display:flex; flex-direction:column;}
+  .row{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 18px; padding:13px 0; border-bottom:1px solid var(--rule); align-items:baseline;}
+  .row .nm{font-family:var(--mono); font-size:13.5px; font-weight:600; word-break:break-word;}
+  .row .meta{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right;}
+  .row .why{grid-column:1/-1; font-size:14px; color:var(--ink-2); max-width:72ch; margin-top:2px;}
+  .vf{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; padding:2px 6px; border:1px solid var(--rule); border-radius:2px; color:var(--ink-3); margin-left:8px; white-space:nowrap;}
+  .vf.code{color:var(--accum); border-color:currentColor;}
+
+  a{color:inherit; text-decoration-color:var(--rule); text-underline-offset:3px;}
+  a:hover{text-decoration-color:currentColor;}
+  a:focus-visible{outline:2px solid var(--accum); outline-offset:3px;}
+
+  .close{margin-top:56px; padding:30px; background:var(--panel); border:1px solid var(--rule); border-top:3px solid var(--accum); box-shadow:var(--shadow);}
+  .close p{color:var(--ink-2); font-size:15.5px; max-width:66ch; margin:0 0 12px;}
+  .close p:last-child{margin-bottom:0;}
+  .close strong{color:var(--ink);}
+
+  footer{margin-top:44px; padding-top:20px; border-top:1px solid var(--rule); font-size:13.5px; color:var(--ink-3); max-width:72ch;}
+  footer strong{color:var(--ink-2);}
+  footer p{margin:0 0 10px;}
+
+  @media (max-width:620px){
+    header.mast{padding:48px 0 32px;}
+    .row{grid-template-columns:1fr;}
+    .row .meta{text-align:left;}
+    .close{padding:24px 20px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="eyebrow">__OWNER__ · __TOTAL__ public repos · since __FIRST__ · rebuilt __BUILT__</p>
+    <h1>The Accumulation Sort</h1>
+    <p class="standfirst">Every repo on the account, run against one question — not whether it's good, but whether it's the thing you actually want.</p>
+    <div class="criterion">
+      <p><strong>The criterion.</strong> A system qualifies if it (1) runs without you, (2) is <em>changed</em> by having run, and (3) that change is legible when you come back. Continuation plus memory plus consequence. A screensaver passes the first test and fails the other two.</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Where it stands</h2>
+    <p class="sect-note">Read live from the GitHub API on every rebuild. Nothing here is a snapshot.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section>
+    <h2>By month created</h2>
+    <p class="sect-note">Each tile is one repo, coloured by tier, stacked into the month it was created.</p>
+    <div class="tl-frame"><div class="tl" id="tl"></div></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section id="drift-sec" hidden>
+    <h2>Drift</h2>
+    <p class="sect-note">What this page has watched happen since it started watching. One row per rebuild — the page keeps its own record, which is the same standard it holds everything else to.</p>
+    <div class="drift"><table id="drift"></table></div>
+  </section>
+
+  <section id="tiers"></section>
+
+  <div class="close">
+    <p><strong>The line worth feeding is the one that keeps getting started and dropped.</strong> Persistent Memory Substrate → Atomic Chronicle → AI Heartbeat Engine and Autonomous Agent OS → Keava Owent → Zeus → PAM Continuum. One idea, several attempts, each abandoned near the point where it began to work.</p>
+    <p>Nothing in the Place tier is wasted — it is the render layer that line never had. The projects with a foot in both halves are the ones that hold attention longest.</p>
+    <p><strong>The narrow version:</strong> one accumulating substrate, one world drawn on top of it, one live external constraint feeding it. All three exist already, in separate repos, not wired together.</p>
+  </div>
+
+  <footer>
+    <p><strong>How this is sorted.</strong> Tier judgments live in <a href="https://github.com/__OWNER__/accumulation-sort/blob/main/tiers.json">tiers.json</a> and are applied to whatever the API returns today. Each row carries how far verification went: <span class="vf code">source read</span> means the file tree or source was inspected, <span class="vf">README read</span> means the README was, <span class="vf">metadata only</span> means description and size alone — those are the likeliest misfiles.</p>
+    <p>Repos created since the last edit to tiers.json appear under <strong>Unsorted</strong> rather than being guessed at. Private repos are invisible to the API and are not counted.</p>
+    <p>Rebuilt daily by GitHub Actions. A page about systems that keep their own record would be a gesture if it did not keep one — see the <a href="https://github.com/__OWNER__/live-reference-principle">Live-Reference Principle</a>.</p>
+  </footer>
+
+</div>
+
+<script>
+const ROWS = /*__ROWS__*/null;
+const TIERS = /*__TIERS__*/null;
+const VERIF = /*__VERIF__*/null;
+const HISTORY = /*__HISTORY__*/null;
+const OWNER = "__OWNER__";
+const ORDER = ["A","B","C","D","E","?"];
+const COLOR = {A:"var(--accum)",B:"var(--living)",C:"var(--place)",D:"var(--record)",E:"var(--stub)","?":"var(--unsorted)"};
+const BG = {A:"var(--accum-bg)",B:"var(--living-bg)",C:"var(--place-bg)",D:"var(--record-bg)",E:"var(--stub-bg)","?":"var(--unsorted-bg)"};
+const count = k => ROWS.filter(r => r.tier === k).length;
+const el = (t, cls) => { const n = document.createElement(t); if (cls) n.className = cls; return n; };
+
+/* ---- stats ---- */
+const live = ROWS.filter(r => (Date.now() - Date.parse(r.pushed)) < 30*864e5).length;
+const stats = [
+  [ROWS.length, "repos", "var(--ink)"],
+  [count("A"), "accumulate", "var(--accum)"],
+  [count("B"), "half", "var(--living)"],
+  [count("C"), "places", "var(--place)"],
+  [count("D") + count("E"), "records & stubs", "var(--ink-3)"],
+  [live, "pushed in 30 days", "var(--ink)"],
+];
+const sh = document.getElementById("stats");
+stats.forEach(([v,k,c]) => {
+  const d = el("div","stat");
+  const vv = el("div","v"); vv.textContent = v; vv.style.color = c;
+  const kk = el("div","k"); kk.textContent = k;
+  d.append(vv,kk); sh.appendChild(d);
+});
+
+/* ---- timeline ---- */
+const months = [...new Set(ROWS.map(r => r.created.slice(0,7)))].sort();
+const MN = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+const tl = document.getElementById("tl");
+months.forEach(m => {
+  const inM = ROWS.filter(r => r.created.slice(0,7) === m)
+                  .sort((a,b) => ORDER.indexOf(a.tier) - ORDER.indexOf(b.tier));
+  const col = el("div","tl-month");
+  const cnt = el("div","tl-count"); cnt.textContent = inM.length;
+  const stack = el("div","tl-stack");
+  inM.forEach(r => {
+    const t = el("div","tick");
+    t.style.background = COLOR[r.tier];
+    t.title = r.name + " — " + TIERS[r.tier][0];
+    stack.appendChild(t);
+  });
+  const lab = el("div","tl-label");
+  lab.textContent = MN[+m.slice(5,7)-1] + (m.slice(5,7) === "01" ? " ’" + m.slice(2,4) : "");
+  col.append(cnt, stack, lab);
+  tl.appendChild(col);
+});
+
+const lgd = document.getElementById("legend");
+ORDER.forEach(k => {
+  if (!count(k)) return;
+  const d = el("div","lg");
+  const s = el("span","sw"); s.style.background = COLOR[k];
+  const t = el("span");
+  t.innerHTML = '<strong style="color:var(--ink);font-weight:600">' + TIERS[k][0] + '</strong> · ' + count(k);
+  d.append(s,t); lgd.appendChild(d);
+});
+
+/* ---- drift ---- */
+if (HISTORY.length > 1) {
+  document.getElementById("drift-sec").hidden = false;
+  const t = document.getElementById("drift");
+  const cols = ORDER.filter(k => HISTORY.some(h => h.counts[k]));
+  let head = "<tr><th>Rebuild</th><th>Total</th>" + cols.map(k =>
+    '<th style="color:' + COLOR[k] + '">' + TIERS[k][0] + "</th>").join("") + "</tr>";
+  const rowsHtml = HISTORY.slice(-14).map((h, i, arr) => {
+    const prev = arr[i-1];
+    const dTot = prev ? h.total - prev.total : 0;
+    const badge = d => d ? ' <span class="delta">' + (d > 0 ? "+" : "") + d + "</span>" : "";
+    return "<tr><td>" + h.date + "</td><td>" + h.total + badge(dTot) + "</td>" +
+      cols.map(k => "<td>" + (h.counts[k] || 0) +
+        badge(prev ? (h.counts[k]||0) - (prev.counts[k]||0) : 0) + "</td>").join("") + "</tr>";
+  }).join("");
+  t.innerHTML = head + rowsHtml;
+}
+
+/* ---- tiers ---- */
+const host = document.getElementById("tiers");
+ORDER.forEach(k => {
+  const items = ROWS.filter(r => r.tier === k);
+  if (!items.length) return;
+  const [tag, title, verdict] = TIERS[k];
+  const sec = el("div","tier"); sec.style.color = COLOR[k];
+  const head = el("div","tier-head");
+  head.innerHTML =
+    '<span class="tag" style="background:' + BG[k] + ';color:' + COLOR[k] + '">' + tag + "</span>" +
+    "<h3>" + title + "</h3>" +
+    '<span class="cnt">' + items.length + " repos</span>";
+  const v = el("p","verdict"); v.textContent = verdict;
+  const rows = el("div","rows");
+  items.forEach(r => {
+    const row = el("div","row");
+    const kb = r.size >= 1024 ? (r.size/1024).toFixed(1) + " MB" : r.size + " KB";
+    const vf = r.verified
+      ? '<span class="vf ' + (r.verified === "code" ? "code" : "") + '">' + VERIF[r.verified] + "</span>"
+      : "";
+    row.innerHTML =
+      '<div class="nm"><a href="https://github.com/' + OWNER + "/" + encodeURIComponent(r.name) +
+        '" target="_blank" rel="noopener">' + r.name + "</a>" + vf + "</div>" +
+      '<div class="meta">' + r.created + " · " + kb + "</div>" +
+      '<div class="why">' + r.why + "</div>";
+    rows.appendChild(row);
+  });
+  sec.append(head, v, rows);
+  host.appendChild(sec);
+});
+</script>
+</body>
+</html>
