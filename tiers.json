@@ -112,48 +112,48 @@
  },
  "heartbeat-observatory": {
   "tier": "C",
-  "verified": "meta",
-  "why": "The flagship: a live open place to watch systems, host projects and play. Beautifully built, and identical when you come back."
+  "verified": "code",
+  "why": "393 files. A shell that hosts other worlds rather than being one — the save systems and Supabase config inside it belong to the games it carries. Its charter includes a Live-Reference clause of its own: reality outranks text, amend rather than obey."
  },
  "MindGames": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Live recursive worlds, traversable screens, folding architecture, cross-reality causality. The most conceptually ambitious renderer here."
+  "verified": "code",
+  "why": "Fifty files. A screen becomes a perspective-aware window, then a traversable portal — recursive worlds, cross-reality causality, scale shifts. Nothing retained between visits."
  },
  "showcase-world": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Texture-forward major-city showcase with deterministic grid labels and free-roam inspection."
+  "verified": "code",
+  "why": "Material-first inspection-ready downtown: real photographed material maps on a deterministic grid with stable asset IDs and collision proxies. Built from Tessera and ModKit parts."
  },
  "northstar-addressable-world": {
   "tier": "C",
-  "verified": "meta",
-  "why": "First-person parkour game and addressable-world engine proof."
+  "verified": "code",
+  "why": "First-person parkour game and a proof of an addressable-world engine — every place in the world has a stable name."
  },
  "wasteland-commons": {
-  "tier": "C",
-  "verified": "meta",
-  "why": "CC0 cooperative wasteland game with deterministic grid inspection and a multiplayer relay."
+  "tier": "B",
+  "verified": "code",
+  "why": "Server-authoritative world state with restore.mjs, world-state.mjs and a Supabase persistence layer — built to survive everyone leaving. Its README notes the production deployment is still instance-local, so the retention is implemented but not yet running as a shared world. Built for a parent and child to play together across phone and desktop."
  },
  "surface-material-lab": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Standalone lab for testing real photographic surface materials. Pure render research."
+  "verified": "code",
+  "why": "218 files. Turns real photographed surfaces into reusable inspectable material packages. Deliberately independent of the game repos — a materials library, not a world."
  },
  "asset-pack-ue-threejs-blender-unity": {
   "tier": "C",
-  "verified": "meta",
-  "why": "38 CC0 modular building and prop assets across four engines. Material, not system."
+  "verified": "code",
+  "why": "ModKit: 38 CC0 modular building and prop assets, ~40.6k triangles, shipped as FBX, GLB and .blend for four engines."
  },
  "tessera-worldkit": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Ships the placement contract, not just the meshes — the most reusable thing in this tier."
+  "verified": "code",
+  "why": "230 files. An AI-readable world-building framework with a public workshop — ships the placement contract so agents stop guessing dimensions. The most reusable thing in this tier."
  },
  "spectral-gt-rs": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Detailed CC0 car asset with an interactive showcase."
+  "verified": "code",
+  "why": "A procedural sports car authored in Blender, shipped with the editable source scene, a game-ready GLB and a browser drive test."
  },
  "Movie-Theater-Three.js-Asset-": {
   "tier": "C",
@@ -172,18 +172,18 @@
  },
  "SYL-Full-Game": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Space You Land at world scale: planets, seamless surface-to-space, modular ships, factions."
+  "verified": "code",
+  "why": "World-scale space foundation: multiple planets, real surface-to-space traversal with no loading screens, modular ships, factions, and a local save/worldState pair. Written as a bridge for other agents to continue."
  },
  "SpaceYouLand": {
   "tier": "C",
-  "verified": "meta",
-  "why": "The Unreal vertical slice of the same."
+  "verified": "code",
+  "why": "739 files of Unreal project with combat checkpoint volumes and a MEMORY.md for its agents. The engine-side slice of Space You Land."
  },
  "SYL-Neighborhood": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Neighbourhood variant of SYL."
+  "verified": "code",
+  "why": "Two files. A walkable inspectable neighbourhood prototype on Tessera's principles — stable IDs, metric grid, one-key debug layer."
  },
  "SYL-Testing-pvp": {
   "tier": "C",
@@ -192,8 +192,8 @@
  },
  "rift-clash": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Browser MOBA, 16 champions, procedural art and audio pipeline."
+  "verified": "code",
+  "why": "Server-authoritative 5v5 MOBA with a full bot roster, everything — champions, portraits, item icons, terrain, particles — generated at runtime. The match ends and the world ends with it."
  },
  "Free-Game-Hub": {
   "tier": "C",
@@ -212,23 +212,23 @@
  },
  "cyber-trench-overdrive": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Cyberpunk endless trench flyer."
+  "verified": "code",
+  "why": "Two files. A neon endless trench runner."
  },
  "the-defender-3d": {
   "tier": "C",
-  "verified": "meta",
-  "why": "3D courtroom strategy simulator with a reactive courtroom."
+  "verified": "code",
+  "why": "Courtroom strategy across opening, evidence, cross-examination, objection and closing phases, with a jury that visibly reacts."
  },
  "the-necklace-show": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Interactive story and one-prompt cinematic production experiment."
+  "verified": "readme",
+  "why": "A fifteen-chapter cinematic web experience about a sailor who finds a necklace that reveals the memories held by objects and places. One of his books, published as a world instead of a manuscript."
  },
  "aetherforge-threejs-mod-studio": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Asset mod-pack editor and cinematic ruin showcase."
+  "verified": "code",
+  "why": "An asset and mod-pack editor around a rain-soaked ruin courtyard, explicit that it is a vertical slice rather than a claim to AAA volume."
  },
  "cinematic-inspection-lab": {
   "tier": "C",
@@ -267,8 +267,8 @@
  },
  "direct-binary-emission-system": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE. An instrument, not a world."
+  "verified": "code",
+  "why": "Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE, with a memory module, a test suite and CI. An instrument with a conscience — but it holds nothing between runs."
  },
  "Phone-AI-App-builds": {
   "tier": "C",
@@ -282,13 +282,13 @@
  },
  "Pictures-screenshots": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Media library made readable to AI collaborators."
+  "verified": "readme",
+  "why": "A persistent public media archive: upload once, and any AI or collaborator can reference the raw URL without a re-upload. Quiet infrastructure that several other projects lean on."
  },
  "President-Sim": {
   "tier": "C",
-  "verified": "meta",
-  "why": "Choice-based presidential simulation. The account's only fork."
+  "verified": "readme",
+  "why": "Twenty scenarios drawn from real 2025–26 events, each decision moving five pillars of a presidency. The account's only fork, hosted on Heartbeat."
  },
  "reality-skin-engine": {
   "tier": "C",
@@ -317,13 +317,13 @@
  },
  "memory-as-spatial-arrangement": {
   "tier": "D",
-  "verified": "meta",
-  "why": "Memory as spatial arrangement rather than linear sequence, with a packing-math result as the missing piece. Implemented inside Keava-Owent."
+  "verified": "code",
+  "why": "A working hypothesis with sim_unit_distance_memory.py and recorded first results — research that actually ran. Implemented inside Keava-Owent."
  },
  "emergence-structure-that-grows": {
   "tier": "D",
-  "verified": "meta",
-  "why": "Internal structure in trained systems as grown and discovered, not designed."
+  "verified": "readme",
+  "why": "The companion principle: structure in trained systems is grown and discovered rather than built. Explicitly the piece memory-as-spatial-arrangement draws on."
  },
  "Emergence-Forge-By-GPT-5.6-Luna": {
   "tier": "D",
@@ -337,33 +337,33 @@
  },
  "ai-workforce-xai-openai": {
   "tier": "D",
-  "verified": "meta",
-  "why": "The two-provider write-up of the same workforce procedure."
+  "verified": "readme",
+  "why": "Four files. The two-provider write-up of the workforce loop — scheduled tasks on consumer apps that read live signals, check themselves, and restyle their own public surface daily. A procedure, described."
  },
  "Neuro-consciousness-and-chemistry-": {
   "tier": "D",
-  "verified": "meta",
-  "why": "Described only as 'Complicated'."
+  "verified": "readme",
+  "why": "“AGI won't come from perfect code or flawless hardware. It comes from a system learning to keep itself going under real constraints.” ECIH's thesis, stated three months before ECIH."
  },
  "The-Engine-Of-Division-": {
   "tier": "D",
-  "verified": "meta",
-  "why": "How rivalry from politics to pop culture operates as a distraction mechanism."
+  "verified": "code",
+  "why": "Twenty-eight files with a table of contents and a live site — a complete free book on how rivalry became a default operating system across school, brands and politics. Published as a repo to avoid copyright."
  },
  "THEY-NEVER-LEFT": {
   "tier": "D",
-  "verified": "meta",
-  "why": "Pattern-recognition hypothesis on ancient civilizations."
+  "verified": "readme",
+  "why": "A structured thought experiment, explicit up front that it claims no truth — only the most internally consistent alternative explanation for a set of observations."
  },
  "The-Structural-Conflict": {
   "tier": "D",
-  "verified": "meta",
-  "why": "Timeline of historical patterns and possibilities."
+  "verified": "readme",
+  "why": "A geopolitical timeline from Ottoman Palestine to 2026, written to hold both perspectives at once."
  },
  "theater-vs-record-trump-drug-clemency": {
   "tier": "D",
-  "verified": "meta",
-  "why": "Policy analysis: stated position versus documented record."
+  "verified": "readme",
+  "why": "Stated position against documented record, with dated figures and sourcing. The same theater-versus-record test the Live-Reference Principle applies to systems."
  },
  "Pieces-Of-My-Life-": {
   "tier": "D",
@@ -392,33 +392,33 @@
  },
  "physics-lab-sandbox": {
   "tier": "E",
-  "verified": "meta",
-  "why": "Described but never committed."
+  "verified": "code",
+  "why": "Zero files. Described, never committed."
  },
  "signal-pebble-echo-2917": {
   "tier": "E",
-  "verified": "meta",
-  "why": "Connector push verification."
+  "verified": "code",
+  "why": "Three files. Reads, in full: “are you reading me yet”."
  },
  "grok-test-dummy-penguin-2026": {
   "tier": "E",
-  "verified": "meta",
-  "why": "Test repo created by Grok."
+  "verified": "code",
+  "why": "A connector test Grok made for itself. “Nothing serious here.”"
  },
  "testing-ai-workforce-loop": {
   "tier": "E",
-  "verified": "meta",
-  "why": "Loop test."
+  "verified": "code",
+  "why": "One file, one line."
  },
  "heartbeat-test": {
   "tier": "E",
-  "verified": "meta",
-  "why": "Heartbeat test."
+  "verified": "code",
+  "why": "Three files. A pulse check for the heartbeat engine."
  },
  "ai-anonymous-task-force": {
   "tier": "E",
-  "verified": "meta",
-  "why": "Stub."
+  "verified": "code",
+  "why": "Eight files totalling 2KB, README only."
  },
  "Online-NPC-City-": {
   "tier": "E",
