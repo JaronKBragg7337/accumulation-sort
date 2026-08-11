@@ -76,9 +76,9 @@
   "why": "The code carries Drizzle plus Supabase migrations for revisioned cloud memory and a cloud-persistence test suite — but no database on the account holds livi tables. The persistence is written and unapplied, so today the organism lives only in the browser it was opened in."
  },
  "ashgrove-npc-online": {
-  "tier": "B",
+  "tier": "A",
   "verified": "live",
-  "why": "The shared town is real in the database: world3_world holds the seed, founding plat, growth records, change log and a digest-verified snapshot, advanced only through world3_advance_day(). It retains — but nothing calls that function on a schedule, so the town only moves when someone moves it. Retention without continuation: exactly half the criterion."
+  "why": "A living town where NPCs and players share one world. As of 2026-08-11 it advances itself: a scheduled GitHub Action runs the headless clock daily, world3_advance_day commits under advanced_by 'clock', and the digest chain is enforced on every step. Verified in the running database at day 5 with an era of history behind it. Runs without you, keeps what happened, and says so."
  },
  "rustfall": {
   "tier": "B",
