@@ -7,6 +7,8 @@
 <meta name="description" content="Every repo on the account, sorted by one question: does it run without you, keep what happened, and show it when you come back.">
 <style>
   :root{
+    --k-system:#12735A; --k-theory:#B8741F; --k-book:#A04A7A; --k-game:#3F7B95; --k-tool:#7E8C86; --k-life:#6B5C8A; --k-test:#A9564A; --k-unj:#84948D;
+    --k-system-bg:#E4F0EB; --k-theory-bg:#F6EBDB; --k-book-bg:#F3E3EC; --k-game-bg:#E3EDF2; --k-tool-bg:#EBEEEC; --k-life-bg:#EAE6F1; --k-test-bg:#F3E4E1; --k-unj-bg:#EEF1EF;
     --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F3F1;
     --ink:#131A17; --ink-2:#57655F; --ink-3:#84948D;
     --rule:#DCE4E0;
@@ -19,6 +21,8 @@
   }
   @media (prefers-color-scheme:dark){
     :root{
+      --k-system:#43C29A; --k-theory:#E0A04A; --k-book:#D187B0; --k-game:#74B6D4; --k-tool:#8B9A93; --k-life:#A594C9; --k-test:#D58473; --k-unj:#71827B;
+    --k-system-bg:#132A23; --k-theory-bg:#2B2113; --k-book-bg:#2B1824; --k-game-bg:#132430; --k-tool-bg:#1B2320; --k-life-bg:#221E2E; --k-test-bg:#2E1B18; --k-unj-bg:#1A2220;
       --ground:#0D1110; --panel:#141A18; --panel-2:#1A2220;
       --ink:#E6ECE9; --ink-2:#9AA9A2; --ink-3:#71827B;
       --rule:#242E2A;
@@ -28,6 +32,8 @@
     }
   }
   :root[data-theme="light"]{
+    --k-system:#12735A; --k-theory:#B8741F; --k-book:#A04A7A; --k-game:#3F7B95; --k-tool:#7E8C86; --k-life:#6B5C8A; --k-test:#A9564A; --k-unj:#84948D;
+    --k-system-bg:#E4F0EB; --k-theory-bg:#F6EBDB; --k-book-bg:#F3E3EC; --k-game-bg:#E3EDF2; --k-tool-bg:#EBEEEC; --k-life-bg:#EAE6F1; --k-test-bg:#F3E4E1; --k-unj-bg:#EEF1EF;
     --ground:#F6F8F7; --panel:#FFFFFF; --panel-2:#F0F3F1;
     --ink:#131A17; --ink-2:#57655F; --ink-3:#84948D; --rule:#DCE4E0;
     --accum:#12735A; --living:#3F7B95; --place:#7E8C86; --record:#8A6A3C; --stub:#A9564A; --unsorted:#6B5C8A;
@@ -35,6 +41,8 @@
     --shadow:0 1px 2px rgba(16,32,26,.05), 0 8px 24px -18px rgba(16,32,26,.35);
   }
   :root[data-theme="dark"]{
+    --k-system:#43C29A; --k-theory:#E0A04A; --k-book:#D187B0; --k-game:#74B6D4; --k-tool:#8B9A93; --k-life:#A594C9; --k-test:#D58473; --k-unj:#71827B;
+    --k-system-bg:#132A23; --k-theory-bg:#2B2113; --k-book-bg:#2B1824; --k-game-bg:#132430; --k-tool-bg:#1B2320; --k-life-bg:#221E2E; --k-test-bg:#2E1B18; --k-unj-bg:#1A2220;
     --ground:#0D1110; --panel:#141A18; --panel-2:#1A2220;
     --ink:#E6ECE9; --ink-2:#9AA9A2; --ink-3:#71827B; --rule:#242E2A;
     --accum:#43C29A; --living:#74B6D4; --place:#8B9A93; --record:#C79A5C; --stub:#D58473; --unsorted:#A594C9;
@@ -103,6 +111,25 @@
   .vf{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; padding:2px 6px; border:1px solid var(--rule); border-radius:2px; color:var(--ink-3); margin-left:8px; white-space:nowrap;}
   .vf.code{color:var(--accum); border-color:currentColor;}
 
+
+  .badges{display:inline-flex; flex-wrap:wrap; gap:6px; margin-left:8px; vertical-align:baseline;}
+  .bd{font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase; padding:2px 7px; border-radius:2px; font-weight:600; white-space:nowrap;}
+  .bd.stage{border:1px solid currentColor; background:transparent;}
+  .row .why .pr{display:block; margin-top:6px; color:var(--ink);}
+  .row .why .pr b, .row .why .nx b{font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); font-weight:600; margin-right:6px;}
+  .row .why .nx{display:block; margin-top:4px; color:var(--ink-3);}
+  .row .why .dr{display:block; margin-top:6px; padding:6px 10px; border-left:2px solid var(--stub); background:var(--panel-2); color:var(--ink-2); font-size:13px;}
+  .row .why .dr b{font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--stub); font-weight:600; margin-right:6px;}
+  .tierkey{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr)); gap:10px 22px; margin:18px 0 0; padding:0; list-style:none;}
+  .tierkey li{font-size:13.5px; color:var(--ink-2);}
+  .tierkey .bd{margin-right:8px;}
+  .twoaxes{margin:24px 0 0; padding:0; list-style:none; display:grid; gap:6px; font-size:14.5px; color:var(--ink-2); max-width:70ch;}
+  .twoaxes b{color:var(--ink); font-weight:600;}
+  .scrollx{overflow-x:auto;}
+  .drift h4{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:0 0 10px; font-weight:600;}
+  .drift table{min-width:420px;}
+  .drift th, .drift td{padding-left:10px;}
+
   a{color:inherit; text-decoration-color:var(--rule); text-underline-offset:3px;}
   a:hover{text-decoration-color:currentColor;}
   a:focus-visible{outline:2px solid var(--accum); outline-offset:3px;}
@@ -132,6 +159,11 @@
     <p class="eyebrow">__OWNER__ · __TOTAL__ public repos · since __FIRST__ · rebuilt __BUILT__</p>
     <h1>The Accumulation Sort</h1>
     <p class="standfirst">Every repo on the account, run against one question — not whether it's good, but whether it's the thing you actually want.</p>
+    <ul class="twoaxes">
+      <li><b>Kind</b> is what a repo <em>is</em>: a system, a theory, a book, a game or world, a tool, a life record, or a test. Repos are grouped by kind below.</li>
+      <li><b>Stage</b> is how far it got: idea, designed (not built yet), partial, runs, accumulates. Furthest first.</li>
+      <li><b>Tier A&ndash;E</b> is the founding question, kept as a second badge on every card.</li>
+    </ul>
     <div class="criterion">
       <p><strong>The criterion.</strong> A system qualifies if it (1) runs without you, (2) is <em>changed</em> by having run, and (3) that change is legible when you come back. Continuation plus memory plus consequence. A screensaver passes the first test and fails the other two.</p>
     </div>
@@ -145,7 +177,7 @@
 
   <section>
     <h2>By month created</h2>
-    <p class="sect-note">Each tile is one repo, coloured by tier, stacked into the month it was created.</p>
+    <p class="sect-note">Each tile is one repo, coloured by kind, stacked into the month it was created.</p>
     <div class="tl-frame"><div class="tl" id="tl"></div></div>
     <div class="legend" id="legend"></div>
   </section>
@@ -156,18 +188,24 @@
     <div class="drift"><table id="drift"></table></div>
   </section>
 
-  <section id="tiers"></section>
+  <section id="kinds"></section>
+
+  <section>
+    <h2>The founding question: tiers A&ndash;E</h2>
+    <p class="sect-note">The tier badge on every card answers the question this page began with. It is a second reading of the same repo, not a second list.</p>
+    <ul class="tierkey" id="tierkey"></ul>
+  </section>
 
   <div class="close">
     <p><strong>One idea, returned to six times.</strong> Persistent Memory Substrate → Atomic Chronicle → Keava Owent → Zeus → PAM Continuum. These are not failed attempts. Each one stops either because the principle had been extracted or because it hit a wall — and the next project, apparently unrelated, turns out to supply the layer that wall needed. The account is a record of layer extraction, not of abandonment.</p>
-    <p>Nothing in the Place tier is wasted — it is the render layer that line never had. And in two repos the two halves have already met: <strong>the-current</strong> ticks its civilization server-side and archives its own eras, and <strong>livi-organism</strong> keeps revisioned cloud memory. Those are substrates wearing a world.</p>
+    <p>Nothing in the places and tools is wasted — it is the render layer that line never had. And in two repos the two halves have already met: <strong>the-current</strong> ticks its civilization server-side and archives its own eras, and <strong>livi-organism</strong> keeps revisioned cloud memory. Those are substrates wearing a world.</p>
     <p><strong>The narrow version:</strong> one accumulating substrate, one world drawn on top of it, one live external constraint feeding it. Two of the three are already joined and running. What is missing is the third — nothing here is fed by anything outside itself.</p>
   </div>
 
   <footer>
-    <p><strong>How this is sorted.</strong> Tier judgments live in <a href="https://github.com/__OWNER__/accumulation-sort/blob/main/tiers.json">tiers.json</a> and are applied to whatever the API returns today. Each row carries how far verification went: <span class="vf code">live system checked</span> means the running database or deployment was inspected, <span class="vf code">source read</span> means the code was, <span class="vf">README read</span> means only the README was, and <span class="vf">metadata only</span> means description and size alone.</p>
-    <p><strong>A README is a claim, not evidence.</strong> Descriptions here lag their code badly and in both directions — repos that describe a working system and contain a specification, and repos whose entire description is one word sitting on top of real implementation. So no tier rests on a README unless the writing <em>is</em> the work, which is why every row in the Record tier is legitimately verified that way and no row anywhere else is.</p>
-    <p>Repos created since the last edit to tiers.json appear under <strong>Unsorted</strong> rather than being guessed at. Private repos are invisible to the API and are not counted.</p>
+    <p><strong>How this is sorted.</strong> Judgments (kind, stage, tier, principle, README drift) live in <a href="https://github.com/__OWNER__/accumulation-sort/blob/main/tiers.json">tiers.json</a> and are applied to whatever the API returns today. They come from a full code read of every repo on 2026-10-14 plus an independent second read; where the two readers disagreed, the one that cited code or commits is used and the other is quoted on the card as &ldquo;second reader&rdquo;. Each row carries how far verification went: <span class="vf code">live system checked</span> means the running database or deployment was inspected, <span class="vf code">source read</span> means the code was, <span class="vf">README read</span> means only the README was, and <span class="vf">metadata only</span> means description and size alone.</p>
+    <p><strong>A README is a claim, not evidence.</strong> Descriptions here lag their code badly and in both directions — repos that describe a working system and contain a specification, and repos whose entire description is one word sitting on top of real implementation. so no judgment rests on a README alone. Where a README and the code disagree, the card says so under &ldquo;README drift&rdquo;.</p>
+    <p>Repos created since the last edit to tiers.json appear under <strong>Not yet judged</strong> rather than being guessed at. Private repos are invisible to the API and are not counted.</p>
     <p>Rebuilt daily by GitHub Actions. A page about systems that keep their own record would be a gesture if it did not keep one — see the <a href="https://github.com/__OWNER__/live-reference-principle">Live-Reference Principle</a>.</p>
   </footer>
 
@@ -176,23 +214,32 @@
 <script>
 const ROWS = /*__ROWS__*/null;
 const TIERS = /*__TIERS__*/null;
+const KINDS = /*__KINDS__*/null;
+const KIND_ORDER = /*__KINDORDER__*/null;
+const STAGES = /*__STAGES__*/null;
 const VERIF = /*__VERIF__*/null;
 const HISTORY = /*__HISTORY__*/null;
 const OWNER = "__OWNER__";
 const ORDER = ["A","B","C","D","E","?"];
+const STAGE_ORDER = ["accumulates","runs","partial","spec","idea","n/a",""];
 const COLOR = {A:"var(--accum)",B:"var(--living)",C:"var(--place)",D:"var(--record)",E:"var(--stub)","?":"var(--unsorted)"};
 const BG = {A:"var(--accum-bg)",B:"var(--living-bg)",C:"var(--place-bg)",D:"var(--record-bg)",E:"var(--stub-bg)","?":"var(--unsorted-bg)"};
+const KC = {"system":"var(--k-system)","theory/principle":"var(--k-theory)","book/writing":"var(--k-book)","game/world":"var(--k-game)","tool":"var(--k-tool)","life-record":"var(--k-life)","test/stub":"var(--k-test)","?":"var(--k-unj)"};
+const KB = {"system":"var(--k-system-bg)","theory/principle":"var(--k-theory-bg)","book/writing":"var(--k-book-bg)","game/world":"var(--k-game-bg)","tool":"var(--k-tool-bg)","life-record":"var(--k-life-bg)","test/stub":"var(--k-test-bg)","?":"var(--k-unj-bg)"};
 const count = k => ROWS.filter(r => r.tier === k).length;
+const kcount = k => ROWS.filter(r => r.kind === k).length;
 const el = (t, cls) => { const n = document.createElement(t); if (cls) n.className = cls; return n; };
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const kname = k => (KINDS[k] || KINDS["?"])[0];
 
 /* ---- stats ---- */
 const live = ROWS.filter(r => (Date.now() - Date.parse(r.pushed)) < 30*864e5).length;
 const stats = [
   [ROWS.length, "repos", "var(--ink)"],
-  [count("A"), "accumulate", "var(--accum)"],
-  [count("B"), "half", "var(--living)"],
-  [count("C"), "places", "var(--place)"],
-  [count("D") + count("E"), "records & stubs", "var(--ink-3)"],
+  [kcount("system"), "systems", "var(--k-system)"],
+  [kcount("game/world"), "games & worlds", "var(--k-game)"],
+  [count("A"), "accumulate (A)", "var(--accum)"],
+  [count("B"), "half (B)", "var(--living)"],
   [live, "pushed in 30 days", "var(--ink)"],
 ];
 const sh = document.getElementById("stats");
@@ -203,20 +250,20 @@ stats.forEach(([v,k,c]) => {
   d.append(vv,kk); sh.appendChild(d);
 });
 
-/* ---- timeline ---- */
+/* ---- timeline (coloured by kind) ---- */
 const months = [...new Set(ROWS.map(r => r.created.slice(0,7)))].sort();
 const MN = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 const tl = document.getElementById("tl");
 months.forEach(m => {
   const inM = ROWS.filter(r => r.created.slice(0,7) === m)
-                  .sort((a,b) => ORDER.indexOf(a.tier) - ORDER.indexOf(b.tier));
+                  .sort((a,b) => KIND_ORDER.indexOf(a.kind) - KIND_ORDER.indexOf(b.kind));
   const col = el("div","tl-month");
   const cnt = el("div","tl-count"); cnt.textContent = inM.length;
   const stack = el("div","tl-stack");
   inM.forEach(r => {
     const t = el("div","tick");
-    t.style.background = COLOR[r.tier];
-    t.title = r.name + " — " + TIERS[r.tier][0];
+    t.style.background = KC[r.kind] || KC["?"];
+    t.title = r.name + " — " + kname(r.kind) + " · " + (STAGES[r.stage] || "") + " · tier " + r.tier;
     stack.appendChild(t);
   });
   const lab = el("div","tl-label");
@@ -226,44 +273,71 @@ months.forEach(m => {
 });
 
 const lgd = document.getElementById("legend");
-ORDER.forEach(k => {
-  if (!count(k)) return;
+KIND_ORDER.forEach(k => {
+  if (!kcount(k)) return;
   const d = el("div","lg");
-  const s = el("span","sw"); s.style.background = COLOR[k];
+  const s = el("span","sw"); s.style.background = KC[k];
   const t = el("span");
-  t.innerHTML = '<strong style="color:var(--ink);font-weight:600">' + TIERS[k][0] + '</strong> · ' + count(k);
+  t.innerHTML = '<strong style="color:var(--ink);font-weight:600">' + kname(k) + '</strong> · ' + kcount(k);
   d.append(s,t); lgd.appendChild(d);
 });
 
 /* ---- drift ---- */
 if (HISTORY.length > 1) {
   document.getElementById("drift-sec").hidden = false;
-  const t = document.getElementById("drift");
-  const cols = ORDER.filter(k => HISTORY.some(h => h.counts[k]));
-  let head = "<tr><th>Rebuild</th><th>Total</th>" + cols.map(k =>
-    '<th style="color:' + COLOR[k] + '">' + TIERS[k][0] + "</th>").join("") + "</tr>";
-  const rowsHtml = HISTORY.slice(-14).map((h, i, arr) => {
-    const prev = arr[i-1];
-    const dTot = prev ? h.total - prev.total : 0;
-    const badge = d => d ? ' <span class="delta">' + (d > 0 ? "+" : "") + d + "</span>" : "";
-    return "<tr><td>" + h.date + "</td><td>" + h.total + badge(dTot) + "</td>" +
-      cols.map(k => "<td>" + (h.counts[k] || 0) +
-        badge(prev ? (h.counts[k]||0) - (prev.counts[k]||0) : 0) + "</td>").join("") + "</tr>";
-  }).join("");
-  t.innerHTML = head + rowsHtml;
+  const host = document.querySelector("#drift").parentNode;
+  const badge = d => d ? ' <span class="delta">' + (d > 0 ? "+" : "") + d + "</span>" : "";
+  const tierTbl = () => {
+    const cols = ORDER.filter(k => HISTORY.some(h => h.counts[k]));
+    let head = "<tr><th>Rebuild</th><th>Total</th>" + cols.map(k =>
+      '<th style="color:' + COLOR[k] + '">' + TIERS[k][0] + "</th>").join("") + "</tr>";
+    const rowsHtml = HISTORY.slice(-14).map((h, i, arr) => {
+      const prev = arr[i-1];
+      const dTot = prev ? h.total - prev.total : 0;
+      return "<tr><td>" + h.date + "</td><td>" + h.total + badge(dTot) + "</td>" +
+        cols.map(k => "<td>" + (h.counts[k] || 0) +
+          badge(prev ? (h.counts[k]||0) - (prev.counts[k]||0) : 0) + "</td>").join("") + "</tr>";
+    }).join("");
+    return head + rowsHtml;
+  };
+  const withKinds = HISTORY.filter(h => h.kinds);
+  host.innerHTML = '<h4>By tier</h4><div class="scrollx"><table id="drift">' + tierTbl() + '</table></div>';
+  if (withKinds.length) {
+    const kcols = KIND_ORDER.filter(k => withKinds.some(h => h.kinds[k]));
+    const head = "<tr><th>Rebuild</th>" + kcols.map(k =>
+      '<th style="color:' + KC[k] + '">' + kname(k) + "</th>").join("") + "</tr>";
+    const body = withKinds.slice(-14).map((h, i, arr) => {
+      const prev = arr[i-1];
+      return "<tr><td>" + h.date + "</td>" + kcols.map(k => "<td>" + (h.kinds[k] || 0) +
+        badge(prev ? (h.kinds[k]||0) - (prev.kinds[k]||0) : 0) + "</td>").join("") + "</tr>";
+    }).join("");
+    host.insertAdjacentHTML("beforeend", '<h4 style="margin-top:22px">By kind (counted since this view was added)</h4><div class="scrollx"><table>' + head + body + "</table></div>");
+  }
 }
 
-/* ---- tiers ---- */
-const host = document.getElementById("tiers");
+/* ---- tier key ---- */
+const tk = document.getElementById("tierkey");
 ORDER.forEach(k => {
-  const items = ROWS.filter(r => r.tier === k);
+  if (k === "?" && !count(k)) return;
+  const li = el("li");
+  li.innerHTML = '<span class="bd tierb" style="background:' + BG[k] + ';color:' + COLOR[k] + '">' + k + " · " + TIERS[k][0] +
+    "</span>" + esc(TIERS[k][1].split(" — ")[0]) + " <span style='color:var(--ink-3)'>(" + count(k) + ")</span>";
+  tk.appendChild(li);
+});
+
+/* ---- kind sections, each sorted furthest stage first ---- */
+const host2 = document.getElementById("kinds");
+const rank = r => { const i = STAGE_ORDER.indexOf(r.stage); return i < 0 ? 99 : i; };
+KIND_ORDER.forEach(k => {
+  const items = ROWS.filter(r => r.kind === k)
+    .sort((a,b) => rank(a) - rank(b) || ORDER.indexOf(a.tier) - ORDER.indexOf(b.tier) || b.pushed.localeCompare(a.pushed));
   if (!items.length) return;
-  const [tag, title, verdict] = TIERS[k];
-  const sec = el("div","tier"); sec.style.color = COLOR[k];
+  const [tag, title, verdict] = KINDS[k];
+  const sec = el("div","tier"); sec.style.color = KC[k];
   const head = el("div","tier-head");
   head.innerHTML =
-    '<span class="tag" style="background:' + BG[k] + ';color:' + COLOR[k] + '">' + tag + "</span>" +
-    "<h3>" + title + "</h3>" +
+    '<span class="tag" style="background:' + KB[k] + ';color:' + KC[k] + '">' + esc(tag) + "</span>" +
+    "<h3>" + esc(title) + "</h3>" +
     '<span class="cnt">' + items.length + " repos</span>";
   const v = el("p","verdict"); v.textContent = verdict;
   const rows = el("div","rows");
@@ -273,15 +347,26 @@ ORDER.forEach(k => {
     const vf = r.verified
       ? '<span class="vf ' + (r.verified === "code" ? "code" : "") + '">' + VERIF[r.verified] + "</span>"
       : "";
+    const stageTxt = STAGES[r.stage] || "";
+    const badges = '<span class="badges">' +
+      (stageTxt && r.stage !== "n/a" ? '<span class="bd stage" style="color:' + KC[k] + '">' + esc(stageTxt) + "</span>" : "") +
+      '<span class="bd tierb" style="background:' + BG[r.tier] + ';color:' + COLOR[r.tier] + '">tier ' + esc(r.tier) + "</span>" +
+      "</span>";
+    const moved = r.judged_at && r.pushed > r.judged_at
+      ? " · pushed since judged " + r.judged_at : "";
+    let why = esc(r.why);
+    if (r.principle) why += '<span class="pr"><b>Principle</b>' + esc(r.principle) + "</span>";
+    if (r.next && r.stage !== "accumulates") why += '<span class="nx"><b>Next stage</b>' + esc(r.next) + "</span>";
+    if (r.drift) why += '<span class="dr"><b>README drift</b>' + esc(r.drift) + "</span>";
     row.innerHTML =
       '<div class="nm"><a href="https://github.com/' + OWNER + "/" + encodeURIComponent(r.name) +
-        '" target="_blank" rel="noopener">' + r.name + "</a>" + vf + "</div>" +
-      '<div class="meta">' + r.created + " · " + kb + "</div>" +
-      '<div class="why">' + r.why + "</div>";
+        '" target="_blank" rel="noopener">' + esc(r.name) + "</a>" + badges + vf + "</div>" +
+      '<div class="meta">' + r.created + " · " + kb + moved + "</div>" +
+      '<div class="why">' + why + "</div>";
     rows.appendChild(row);
   });
   sec.append(head, v, rows);
-  host.appendChild(sec);
+  host2.appendChild(sec);
 });
 </script>
 </body>

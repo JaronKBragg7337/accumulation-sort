@@ -1,428 +1,1287 @@
 {
- "_doc": "Tier judgments. tier: A accumulates | B living-but-unproven | C place/tool/material | D written record | E stub. verified: 'code' = file tree or source inspected, 'readme' = README read, 'meta' = description/size only. Repos absent from this file appear on the page as UNSORTED.",
- "persistent-memory-substrate": {
-  "tier": "D",
-  "verified": "code",
-  "why": "One file. The repo contains the README and nothing else — the substrate is stated, never implemented. It remains the clearest statement of the criterion on the account, and it is a statement."
- },
- "Keava-Owent": {
-  "tier": "D",
-  "verified": "code",
-  "why": "main.py assembles fifteen subsystems — store, continuity, loop, live-reference engine, consumption and contribution ledgers, memory graph, recall, spark generator, membrane, approval queue, receipts, transport. None of those modules are committed; the import fails on the first line. What is here is the assembly, the tests, and config/membrane.yaml — a human-owned permission file the system reads and can never write, which is a corrigibility guarantee made concrete. An architecture of unusual quality, and not a running system."
- },
- "zeus-ai": {
-  "tier": "A",
-  "verified": "code",
-  "why": "131 files: ledger, memory, heartbeat, workers, Docker. A local FastAPI/React workbench over Ollama with local RAG — plus a training/ path for from-scratch Zeus-Tiny weights. A small model with no datacenter, already started."
- },
- "autonomous-agent-os": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Two files. The README is explicit: the architecture is locked to a six-layer stack and “no production code is committed yet.” A design document for a system that would accumulate, not a system that does."
- },
- "ai-heartbeat-engine": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Seven files, all documentation. Describes a real self-continuing loop whose entire operating surface is prompts and scheduled tasks rather than code — so the loop may well run, but the repo is its specification, not its implementation."
- },
- "pam-continuum": {
-  "tier": "A",
-  "verified": "live",
-  "why": "Live on Project Heartbeat: pam_instances, pam_devices, threads and messages all carry rows. Its pam_action_ledger is still empty — the control plane exists and is connected, and has not yet recorded an action."
- },
- "ATOMIC-CHRONICLE-v4.0-A-World-You-Want-Or-a-World-of-Worlds": {
-  "tier": "A",
-  "verified": "code",
-  "why": "Real implementation in atomic_chronicle_v4.py — a neutral immutable ledger for actions and state across independent worlds, built for long-term continuity."
- },
- "Atomic-World-Chronicle-3.7": {
-  "tier": "A",
-  "verified": "code",
-  "why": "A single 52KB implementation file named “ATOM Code 3.7”, no extension — which is why filename scans miss it. Immutable state tracking and cross-world interaction, actually written."
- },
- "Atomic-Chronicle-Memory-Chain-": {
-  "tier": "A",
-  "verified": "code",
-  "why": "Working Python prototype: local blockchain ledger, tokenised wallet, an Asteroids-style game and an optional Arduino robot, where in-game actions commit blocks and trigger real-world commands. One ledger spanning a game and a machine."
- },
- "ATOMIC-CHRONICLE-v4.0-A-world-you-want-or-a-world-of-worlds-": {
-  "tier": "E",
-  "verified": "code",
-  "why": "Two files, README only. Duplicate shell of the v4.0 description with no implementation."
- },
- "Summary-Of-repos-Memory-linker": {
-  "tier": "A",
-  "verified": "code",
-  "why": "A machine-readable map of the whole account built for Zeus, verified from fresh clones plus live Vercel and Supabase state — explicitly not from READMEs — and rendered as a Three.js data centre. Generated 2026-07-12 and never regenerated, which is precisely the failure it was built to avoid."
- },
- "orchestra": {
-  "tier": "A",
-  "verified": "code",
-  "why": "Seventy-seven files around an append-only tracking/events.jsonl. Each cycle asks five AI systems eight questions, preserves every capture, hands the corpus to two synthesizers, and tracks falsifiable signals until they are confirmed, invalidated, decayed or left unresolved. It keeps its failures too."
- },
+ "_doc": "Judgments, two axes plus the founding question. kind = what it IS: system | theory/principle | book/writing | game/world | tool | life-record | test/stub. stage = how far it got: idea | spec (designed, not built yet) | partial | runs | accumulates; 'n/a' for books and life-record. tier = the page's founding question: A accumulates | B half | C place | D record | E stub. principle = the idea the repo carries; organ = which part of a larger AI-from-parts it would be; readme_drift = where the README and the code disagree (empty when they agree); last_commit = the latest commit the judgment was made against; next_stage = what moving up one stage needs (optional). verified: 'code' = source read, 'readme', 'meta', 'live' = running deployment checked. Sources: full code read of all 107 repos (2026-10-14) plus an independent second read; where they disagree the one citing concrete code or commit evidence is used and the other is quoted in why as 'second reader'. Repos absent from this file appear on the page as Not yet judged.",
  "accumulation-sort": {
   "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
   "verified": "code",
-  "why": "This page. Re-reads the account every morning without being asked, appends what it found to history.jsonl, and never rewrites a prior line. It qualifies under its own criterion, which is the only reason it is allowed to apply it."
- },
- "the-current": {
-  "tier": "A",
-  "verified": "live",
-  "why": "Verified in the running database, not just in code: the_current_era_archives holds a retired era and the_current_era_entropy holds 66 replay inputs kept with it. An era of this civilization has already ended and been preserved. Ticked server-side by a Supabase edge function, so it advances with every browser closed. The criterion satisfied in production."
- },
- "livi-organism": {
-  "tier": "B",
-  "verified": "live",
-  "why": "The code carries Drizzle plus Supabase migrations for revisioned cloud memory and a cloud-persistence test suite — but no database on the account holds livi tables. The persistence is written and unapplied, so today the organism lives only in the browser it was opened in."
- },
- "ashgrove-npc-online": {
-  "tier": "A",
-  "verified": "live",
-  "why": "A living town where NPCs and players share one world. As of 2026-08-11 it advances itself: a scheduled GitHub Action runs the headless clock daily, world3_advance_day commits under advanced_by 'clock', and the digest chain is enforced on every step. Verified in the running database at day 5 with an era of history behind it. Runs without you, keeps what happened, and says so."
- },
- "rustfall": {
-  "tier": "B",
-  "verified": "live",
-  "why": "Roaming robots and an NPC job economy across 125 files, with a local save and five rustfall_* cloud tables standing empty. The world persists for one player on one device; the shared version is provisioned and unused."
- },
- "fable-survival": {
-  "tier": "C",
-  "verified": "live",
-  "why": "Cloud save is implemented, and its Supabase project is INACTIVE — paused. Right now the cloud save cannot write, so what survives is whatever the browser kept."
- },
- "The-Free-Online-Neighborhood-": {
-  "tier": "B",
-  "verified": "code",
-  "why": "Drizzle ORM, a worker and scheduled workflows — a shared neighbourhood with a real database behind it."
- },
- "Pirate-World-Sea-Of-Fortune-": {
-  "tier": "C",
-  "verified": "live",
-  "why": "Supabase-backed in code; the project is INACTIVE and its tables were already empty when last inspected in July. The backend is provisioned, paused and unused."
- },
- "AETHERSPAN-v1.1-Anonymous-Teleoperation-Bridge": {
-  "tier": "A",
-  "verified": "code",
-  "why": "41KB of implementation in “AETHERSPAN CODE 1.1”. Bridges controller input to a real device and logs every action to an append-only hash-chained SQLite ledger."
- },
- "Reflector-To-API-Bridges-": {
-  "tier": "C",
-  "verified": "code",
-  "why": "14KB of implementation in “Reflector Code”. Translates domain commands into AETHERSPAN frames and hands back the response. Stateless by design."
- },
- "heartbeat-observatory": {
-  "tier": "C",
-  "verified": "code",
-  "why": "393 files. A shell that hosts other worlds rather than being one — the save systems and Supabase config inside it belong to the games it carries. Its charter includes a Live-Reference clause of its own: reality outranks text, amend rather than obey."
- },
- "MindGames": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Fifty files. A screen becomes a perspective-aware window, then a traversable portal — recursive worlds, cross-reality causality, scale shifts. Nothing retained between visits."
- },
- "showcase-world": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Material-first inspection-ready downtown: real photographed material maps on a deterministic grid with stable asset IDs and collision proxies. Built from Tessera and ModKit parts."
- },
- "northstar-addressable-world": {
-  "tier": "C",
-  "verified": "code",
-  "why": "First-person parkour game and a proof of an addressable-world engine — every place in the world has a stable name."
- },
- "wasteland-commons": {
-  "tier": "B",
-  "verified": "live",
-  "why": "Server-authoritative world state with restore and a live, healthy database — and every table has zero rows. Built to survive everyone leaving, and nobody has arrived yet."
- },
- "surface-material-lab": {
-  "tier": "C",
-  "verified": "code",
-  "why": "218 files. Turns real photographed surfaces into reusable inspectable material packages. Deliberately independent of the game repos — a materials library, not a world."
- },
- "asset-pack-ue-threejs-blender-unity": {
-  "tier": "C",
-  "verified": "code",
-  "why": "ModKit: 38 CC0 modular building and prop assets, ~40.6k triangles, shipped as FBX, GLB and .blend for four engines."
- },
- "tessera-worldkit": {
-  "tier": "C",
-  "verified": "code",
-  "why": "230 files. An AI-readable world-building framework with a public workshop — ships the placement contract so agents stop guessing dimensions. The most reusable thing in this tier."
- },
- "spectral-gt-rs": {
-  "tier": "C",
-  "verified": "code",
-  "why": "A procedural sports car authored in Blender, shipped with the editable source scene, a game-ready GLB and a browser drive test."
- },
- "Movie-Theater-Three.js-Asset-": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Theater asset with a Playwright test rig, feeding Heartbeat Observatory's cinema."
- },
- "World-Printer-Lab-For-3D-Worlds": {
-  "tier": "C",
-  "verified": "code",
-  "why": "World generation lab with a version inventory."
- },
- "worldbuilding-lab": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Worldbuilding doctrine v2/v3 plus texture and manifest discipline. A style guide with a renderer attached."
- },
- "SYL-Full-Game": {
-  "tier": "C",
-  "verified": "code",
-  "why": "World-scale space foundation: multiple planets, real surface-to-space traversal with no loading screens, modular ships, factions, and a local save/worldState pair. Written as a bridge for other agents to continue."
- },
- "SpaceYouLand": {
-  "tier": "C",
-  "verified": "code",
-  "why": "739 files of Unreal project with combat checkpoint volumes and a MEMORY.md for its agents. The engine-side slice of Space You Land."
- },
- "SYL-Neighborhood": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Two files. A walkable inspectable neighbourhood prototype on Tessera's principles — stable IDs, metric grid, one-key debug layer."
- },
- "SYL-Testing-pvp": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Nine files around a single server.js — a PvP test bed."
- },
- "rift-clash": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Server-authoritative 5v5 MOBA with a full bot roster, everything — champions, portraits, item icons, terrain, particles — generated at runtime. The match ends and the world ends with it."
- },
- "Free-Game-Hub": {
-  "tier": "C",
-  "verified": "code",
-  "why": "187 files behind a games.json index. A shelf, not a system."
- },
- "Kurearthis": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Unreal project with an accumulating BUILDLOG and archive, a world model and a charter. The build process keeps a record; the game does not."
- },
- "New-Age-Of-War": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Unreal C++ war game."
- },
- "cyber-trench-overdrive": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Two files. A neon endless trench runner."
- },
- "the-defender-3d": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Courtroom strategy across opening, evidence, cross-examination, objection and closing phases, with a jury that visibly reacts."
- },
- "the-necklace-show": {
-  "tier": "C",
-  "verified": "code",
-  "why": "An 86KB app.js behind a fifteen-chapter story about a necklace that reveals the memories held by objects — and a canonical-archive keeping the original one-prompt Kimi output, zip included, beside the version that grew from it. The never-delete pledge, applied inside a repo."
+  "why": "This page. Re-reads the account every morning without being asked, appends what it found to history.jsonl, and never rewrites a prior line. It qualifies under its own criterion, which is the only reason it is allowed to apply it.",
+  "principle": "Rebuild from the live source each run and append one line to an append-only history, so the sort becomes a time series instead of an opinion.",
+  "organ": "long-term memory",
+  "readme_drift": "",
+  "last_commit": "2026-10-13",
+  "next_stage": ""
  },
  "aetherforge-threejs-mod-studio": {
   "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
   "verified": "code",
-  "why": "An asset and mod-pack editor around a rain-soaked ruin courtyard, explicit that it is a vertical slice rather than a claim to AAA volume."
+  "why": "An asset and mod-pack editor around a rain-soaked ruin courtyard, explicit that it is a vertical slice rather than a claim to AAA volume.",
+  "principle": "Ship a content pack with its structure (pack/asset format) so the editor and the content grow separately.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-27",
+  "next_stage": ""
  },
- "cinematic-inspection-lab": {
-  "tier": "C",
+ "AETHERSPAN-v1.1-Anonymous-Teleoperation-Bridge": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
   "verified": "code",
-  "why": "Asset registry, constraints, grid, scene and sequence manifests, QA report — record-keeping as discipline, not runtime retention."
- },
- "Circuit-Sim-3D-Mobile-Lab-v2": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Mobile circuit simulator, single page."
- },
- "market-architect": {
-  "tier": "C",
-  "verified": "code",
-  "why": "TypeScript monorepo with vitest and no persistence layer."
- },
- "Jaron-Game-World-Foundation": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Shared foundation with a registry.json and agent instructions — a parts bin for the world projects."
- },
- "Air-Vehicles-": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Vite/TS flight vehicles, deployed to Vercel."
- },
- "THE-SHIFTING": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Vite/TypeScript app with a deploy workflow. No persistence."
- },
- "vibecoding-training-grounds-": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Newest repo on the account. Vite/TS with agent instructions and a deploy workflow."
- },
- "direct-binary-emission-system": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE, with a memory module, a test suite and CI. An instrument with a conscience — but it holds nothing between runs."
- },
- "Phone-AI-App-builds": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Single index.html of phone-built apps behind a deploy workflow."
- },
- "Framing-Lens": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Thirteen files: a prompt set, scoring engine, data model, routes, policy model, wireflow and roadmap — plus a package.json declaring Next and React, and not one source file. The app is fully specified and unbuilt."
- },
- "Pictures-screenshots": {
-  "tier": "E",
-  "verified": "code",
-  "why": "Three files: a gallery viewer, a README, and an empty imgs/ directory. The archive other projects were told to reference has no images in it, so those raw URLs resolve to nothing."
- },
- "President-Sim": {
-  "tier": "C",
-  "verified": "code",
-  "why": "One 35KB index.html carrying twenty scenarios drawn from real 2025–26 events, each decision moving five pillars. Complete and self-contained."
- },
- "reality-skin-engine": {
-  "tier": "C",
-  "verified": "code",
-  "why": "Design principles, system architecture, terminology and decision log — a specification with a skinning engine attached."
- },
- "live-reference-principle": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "Constraints and signals are only valid while connected to what they reference; frozen references become gestures. The acceptance test for both tiers above, and the reason this page rebuilds itself."
- },
- "THE-ENVIRONMENT-CONSTRAINT-INTELLIGENCE-HYPOTHESIS-ECIH-": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "Intelligence as self-maintenance under constraint. Five testable predictions; the closing unfalsifiable argument is the weak part."
- },
- "YES-NO-Environment-Perspective-You-Myself-Observer-Paradox": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "Twelve chapters, written Dec 2024 to Feb 2025, primarily for your children."
- },
- "Perspective-Environmental-framework-Exercise": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "Six ambiguous prompts where the choice is a decoy and the reasoning is the signal. Run across nine models — one of the few repos here that produced data."
- },
- "memory-as-spatial-arrangement": {
-  "tier": "D",
-  "verified": "code",
-  "why": "A working hypothesis with sim_unit_distance_memory.py and recorded first results — research that actually ran. Implemented inside Keava-Owent."
- },
- "emergence-structure-that-grows": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "The companion principle: structure in trained systems is grown and discovered rather than built. Explicitly the piece memory-as-spatial-arrangement draws on."
- },
- "Emergence-Forge-By-GPT-5.6-Luna": {
-  "tier": "D",
-  "verified": "code",
-  "why": "A cellular-automata lab, conjecture lab and pattern miner with recorded results files. Research that produced output."
- },
- "ai-workforce": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Five files, all documentation. A procedure for running scheduled work through consumer AI apps with no server and no always-on machine — real, and described rather than implemented."
- },
- "ai-workforce-xai-openai": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Four files. The two-provider write-up of the same procedure."
- },
- "Neuro-consciousness-and-chemistry-": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "“AGI won't come from perfect code or flawless hardware. It comes from a system learning to keep itself going under real constraints.” ECIH's thesis, stated three months before ECIH."
- },
- "The-Engine-Of-Division-": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Twenty-eight files with a table of contents and a live site — a complete free book on how rivalry became a default operating system across school, brands and politics. Published as a repo to avoid copyright."
- },
- "THEY-NEVER-LEFT": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "A structured thought experiment, explicit up front that it claims no truth — only the most internally consistent alternative explanation for a set of observations."
- },
- "The-Structural-Conflict": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "A geopolitical timeline from Ottoman Palestine to 2026, written to hold both perspectives at once."
- },
- "theater-vs-record-trump-drug-clemency": {
-  "tier": "D",
-  "verified": "readme",
-  "why": "Stated position against documented record, with dated figures and sourcing. The same theater-versus-record test the Live-Reference Principle applies to systems."
- },
- "Pieces-Of-My-Life-": {
-  "tier": "D",
-  "verified": "code",
-  "why": "One file, 82KB, read in full. A life recorded age by age with the place attached to each stage - and the source document for every other paper on this account. ECIH's claim that environment reshapes cognition is here as lived record: a new school almost every year, the same subject taught differently at each, being marked wrong for what the last one taught. The never-delete pledge starts at fifteen, with kept messages that were the only proof against an accusation. The Live-Reference Principle's 'where the record and reality disagree, reality wins' starts in the same classrooms. Not a personal aside beside the work. The origin of it."
- },
- "The-Last-Theory.-": {
-  "tier": "D",
-  "verified": "code",
-  "why": "README and licence only."
- },
- "The-Thinking-Gym": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Sixteen markdown files, no code. Exercises."
- },
- "Orchestra-Financial-": {
-  "tier": "D",
-  "verified": "code",
-  "why": "Two files: README and licence. A placeholder for the financial arm of Orchestra."
- },
- "EchosOrchestra": {
-  "tier": "E",
-  "verified": "code",
-  "why": "Empty."
- },
- "physics-lab-sandbox": {
-  "tier": "E",
-  "verified": "code",
-  "why": "Zero files. Described, never committed."
- },
- "signal-pebble-echo-2917": {
-  "tier": "E",
-  "verified": "code",
-  "why": "Three files. Reads, in full: “are you reading me yet”."
- },
- "grok-test-dummy-penguin-2026": {
-  "tier": "E",
-  "verified": "code",
-  "why": "A connector test Grok made for itself. “Nothing serious here.”"
- },
- "testing-ai-workforce-loop": {
-  "tier": "E",
-  "verified": "code",
-  "why": "One file, one line."
- },
- "heartbeat-test": {
-  "tier": "E",
-  "verified": "code",
-  "why": "Three files. A pulse check for the heartbeat engine."
+  "why": "One 41 KB file ('AETHERSPAN CODE 1.1', no extension) implementing a WebSocket teleop bridge that logs to an append-only hash-chained SQLite ledger. The code does the keeping, but it only acts when a controller connects, and nothing it kept is in the repo. Was A; B because nothing here continues on its own. Not executed by me. Dormant since 2025-12-17. (second reader: DeferredCommitter batches frames into sha256-chained blocks with metered credits; runs when started, nothing schedules it)",
+  "principle": "Put a hash-chained append-only log under every action that touches the real world.",
+  "organ": "body",
+  "readme_drift": "",
+  "last_commit": "2025-12-17",
+  "next_stage": "Stage runs / accumulates once something connects and the ledger is kept somewhere readable."
  },
  "ai-anonymous-task-force": {
   "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
   "verified": "code",
-  "why": "Eight files totalling 2KB, README only."
+  "why": "Eight files, each 9 to 24 bytes: Architecture, Capability_Matrix, Growth_Protocol, Principles, START_HERE are filenames with a title line. A planned system, designed in outline only: architecture, capabilities, growth protocol, principles are the planned parts and none are written yet. (second reader: eight empty files with good names)",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-06-02",
+  "next_stage": "Spec stage needs the five documents actually written."
+ },
+ "AI-Framing-Study": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "runs",
+  "verified": "code",
+  "why": "One exercise (prompt.txt) given cold to 9 AI runs; tools/build.py turns raw answers into a page showing every option picked and not picked. A finished measurement record with a rebuild script, not something that runs on its own. (second reader: reads it as a test (an exam) and adds tools/run_headless.sh, which runs five AIs in parallel from an empty folder: a reusable exam harness)",
+  "principle": "Show the options an answerer did NOT pick next to the one it did - the unchosen choices are the data.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-09-30",
+  "next_stage": ""
+ },
+ "ai-heartbeat-engine": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "spec",
+  "verified": "code",
+  "why": "Seven documentation files (27 KB README, QUICKSTART, scheduled-task and seed examples). A designed system: a self-continuing loop between AI workers with a human stop-channel, run entirely by prompts and scheduled tasks. The README says the loop has been proven running; none of that running state is in the repo. Planned parts: loop, stop-channel, seed and todo files, scheduled tasks. Missing for the next stage: the run logs or a runnable seed folder committed here.",
+  "principle": "A self-continuing AI loop whose stop signal comes from a human channel the loop cannot remove.",
+  "organ": "core",
+  "readme_drift": "partial - README says the loop is proven; repo holds only the description",
+  "last_commit": "2026-06-03",
+  "next_stage": "Commit a real run's seed/todo/log files to reach 'runs'."
+ },
+ "ai-workforce": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Five documents (README, SPEC, STATUS with a dated change log). A designed system for hiring consumer AI apps (Grok, ChatGPT, Perplexity, Claude) on schedules with no server, writing an open record to a website. Designed, not built here: the repo holds spec and status, the running parts live in the apps. Missing: committed output records. (second reader: one scheduled write was proven on 2026-06-01; STATUS.md is an honest living checklist; the 'bias question' was never run)",
+  "principle": "Use consumer AI apps' own schedulers as a no-server workforce, and keep the record on an open site.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-06-01",
+  "next_stage": "Commit the records the workforce produces to reach 'accumulates'."
+ },
+ "ai-workforce-xai-openai": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "spec",
+  "verified": "code",
+  "why": "Two-provider version of the same procedure (README + SPEC). Designed, not built here.",
+  "principle": "Run the same job on two rival providers and compare the outputs.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-05-31",
+  "next_stage": "As ai-workforce."
+ },
+ "Air-Vehicles-": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Vite/TS flight vehicles, deployed to Vercel.",
+  "principle": "Make the model's own articulation (vectored nozzle) the thing you can fly and see.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-03",
+  "next_stage": ""
+ },
+ "ashgrove-npc-online": {
+  "tier": "B",
+  "kind": "game/world",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Deterministic town simulation (sim/: people, jobs, pets, resources, clock, digest-verified snapshots) with a 400-day catch-up test, walkable town, state saved in localStorage. This repo has no scheduler and no Supabase wiring ('Supabase-shaped, not yet Supabase'). The daily unattended clock that made the old A judgment true now lives in heartbeat-observatory (.github/workflows/ashgrove-clock.yml and world3/town). So: the sim is real, the always-on part is in the other repo. Was A. (second reader: this repo alone persists to localStorage; the daily world3 clock lives in .github/workflows/ashgrove-clock.yml inside heartbeat-observatory, so the pair accumulates but this repo does not)",
+  "principle": "The world advances one day per real day on a server clock, so it changes whether or not anyone visits.",
+  "organ": "world",
+  "readme_drift": "README says 'scaffold' and 'destination, not the current state'; STATUS.md is honest, but the live clock moved to heartbeat-observatory",
+  "last_commit": "2026-08-06",
+  "next_stage": "Stage accumulates here needs the clock and shared state wired to this repo, or retire it in favor of heartbeat-observatory/world3/town."
+ },
+ "asset-pack-ue-threejs-blender-unity": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "ModKit: 38 CC0 modular building and prop assets, ~40.6k triangles, shipped as FBX, GLB and .blend for four engines.",
+  "principle": "Ship one asset set in four engine formats with the Blender source and a consumer section for AIs.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-25",
+  "next_stage": ""
+ },
+ "atlas-field-unit": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Three.js android (AtlasFieldUnit.ts, ~29 KB) built from named parts (armor panels, joints, rails, cables) walking in a procedurally assembled maintenance bay; tests, asset manifest, CI. A place/character that is the same each visit.",
+  "principle": "Build a character from named serviceable parts plus a rig, not one mesh, so every part has an identity.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-12",
+  "next_stage": ""
+ },
+ "Atomic-Chronicle-Memory-Chain-": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "One 25 KB Python file: local blockchain ledger, token wallet, Asteroids-style game, optional Arduino robot, in-game actions commit blocks. The code keeps a chain when run; nothing in the repo is a kept record and nothing runs without you. Not executed by me. Was A. Dormant since 2025-12-16. (second reader: TokenizedPersistence puts a wallet in the same chain as the game events; runs when started, nothing schedules it)",
+  "principle": "Let a game action and a physical-device action share one append-only ledger.",
+  "organ": "permanent memory",
+  "readme_drift": "",
+  "last_commit": "2025-12-16",
+  "next_stage": "Run it and commit a chain, or fold into the v4 line."
+ },
+ "ATOMIC-CHRONICLE-v4.0-A-World-You-Want-Or-a-World-of-Worlds": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "One 55 KB Python file: append-only execution and memory substrate hosting multiple 'worlds' (energy, robotics, game, DAO), config-file feature toggles, optional FastAPI toggles. It is a substrate that others call; no kept record in repo. Not executed by me. Was A. Dormant since 2025-12-17. (second reader: real append-only block ledger (TransparencyEconomy, rus_validate) that runs when started; nothing schedules it, so B)",
+  "principle": "One neutral append-only ledger under many independent worlds; features toggled by config, not code edits.",
+  "organ": "permanent memory",
+  "readme_drift": "",
+  "last_commit": "2025-12-17",
+  "next_stage": "Run it with at least one world and commit what it kept."
+ },
+ "ATOMIC-CHRONICLE-v4.0-A-world-you-want-or-a-world-of-worlds-": {
+  "tier": "E",
+  "kind": "system",
+  "stage": "idea",
+  "verified": "code",
+  "why": "Two files, README only. Duplicate shell of the v4.0 description with no implementation.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2025-12-17",
+  "next_stage": ""
+ },
+ "Atomic-World-Chronicle-3.7": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "One 52 KB file ('ATOM Code 3.7', no extension): immutable state tracking and cross-world interaction. Earlier version of the v4 line. Not executed by me. Was A. Dormant since 2025-12-17. (second reader: same ledger, earlier cut; RobotWorld serialises commands as blocks; runs when started, nothing schedules it)",
+  "principle": "Immutable state tracking across independent worlds (earlier form of the v4 ledger).",
+  "organ": "permanent memory",
+  "readme_drift": "",
+  "last_commit": "2025-12-17",
+  "next_stage": "As v4."
+ },
+ "autonomous-agent-os": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "spec",
+  "verified": "code",
+  "why": "Two files (20 KB README plus a verbatim design-conversation transcript). A designed system: a six-layer stack (Supervisor, Workers, Durable Execution, Critic Lane, Task Ledger and more), with the README tagging every part PROVEN, REACHABLE or DESIGN. The proven part is a self-continuing heartbeat loop between two AI workers; the OS around it is not built. Missing for the next stage: any production code committed.",
+  "principle": "Tag every claim in a design PROVEN / REACHABLE / DESIGN so a cold reader sees how far it got.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-06-03",
+  "next_stage": "Commit the supervisor and task ledger code to reach 'partial'."
+ },
+ "binary-bridge": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Working Next.js converter between text, binary, hex and decimal with auto-detect and plain-language errors for bad input; tests; deployed as a ChatGPT-hosted site. A tool, same every time.",
+  "principle": "Auto-detect what kind of input arrived, and explain malformed input in plain words instead of failing.",
+  "organ": "senses",
+  "readme_drift": "",
+  "last_commit": "2026-09-02",
+  "next_stage": ""
+ },
+ "cinematic-inspection-lab": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Asset registry, constraints, grid, scene and sequence manifests, QA report — record-keeping as discipline, not runtime retention.",
+  "principle": "Make a shot sequence and its asset registry/QA report the thing you check, before production.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-01",
+  "next_stage": ""
+ },
+ "Circuit-Sim-3D-Mobile-Lab-v2": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Mobile Arduino/breadboard workbench with a nodal circuit solver and ATmega328P machine-code emulation (js/ 10 files, tests, Pages deploy). A working tool, same each time.",
+  "principle": "Emulate the actual chip's machine code so what you build behaves like the real part.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-17",
+  "next_stage": ""
+ },
+ "claude-cloud-agent-for-Jaron-": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "One-line README, no code.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-09-18",
+  "next_stage": "Write anything; it is empty."
+ },
+ "cyber-trench-overdrive": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Two files. A neon endless trench runner.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-07-16",
+  "next_stage": ""
+ },
+ "direct-binary-emission-system": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Deterministic byte emission and validation for PE, ELF, WASM, boot sectors and WAVE, with a memory module, a test suite and CI. An instrument with a conscience — but it holds nothing between runs.",
+  "principle": "Emit executable bytes deterministically and validate them, with a published status page built from a real run.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-08-09",
+  "next_stage": ""
+ },
+ "EchosOrchestra": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "Empty.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-04-24",
+  "next_stage": ""
+ },
+ "Emergence-Forge-By-GPT-5.6-Luna": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Cellular-automata lab, conjecture lab and pattern miner in Python with tests and recorded RESULTS.md and PATTERN_RESULTS.md. Research that ran and wrote its findings down; the run is manual.",
+  "principle": "Search simulated systems for measurable, reproducible patterns and turn them into testable conjectures.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-07-22",
+  "next_stage": ""
+ },
+ "emergence-structure-that-grows": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "The companion principle: structure in trained systems is grown and discovered rather than built. Explicitly the piece memory-as-spatial-arrangement draws on.",
+  "principle": "Structure in trained systems is grown and discovered, not built.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-05-26",
+  "next_stage": ""
+ },
+ "fable-survival": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "live",
+  "why": "DayZ-style Three.js survival game; cloud save written against Supabase (3 SQL files), and a heartbeat mirror deploy protocol. Last code commit 2026-07-09. Whether the cloud save works depends on a database I did not check.",
+  "principle": "Keep a mirror deploy law in the repo so any AI can ship the same game to two hosts.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-09",
+  "next_stage": ""
+ },
+ "fed-not-filled": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "One 14 KB written draft: intelligence as something maintained daily by feeding, not filled once by compression. Companion to the Live-Reference Principle.",
+  "principle": "Keep a mind fed daily from live sources instead of filling it once and freezing it.",
+  "organ": "long-term memory",
+  "readme_drift": "",
+  "last_commit": "2026-08-12",
+  "next_stage": ""
+ },
+ "fly-school": {
+  "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
+  "verified": "code",
+  "why": "Simulated 165,122-neuron male fly brain (LIF cells) taught Morse timing by one persistent mushroom-body learner that is never reset; school.py runs on wall-clock school hours, forgets by a real 6-hour half-life, keeps a per-trial permanent log in Supabase, a report card, a lifeline copy of memory, and exams. 480 files of results through Gate 4 (a hard FAIL left on the record). The strongest accumulation example on the account.",
+  "principle": "Forgetting should run on the real clock (half-life), so spaced practice and the morning exam measure what survived the night.",
+  "organ": "working memory",
+  "readme_drift": "",
+  "last_commit": "2026-09-18",
+  "next_stage": ""
+ },
+ "Framing-Lens": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "spec",
+  "verified": "code",
+  "why": "Thirteen files: README, framing-lens-v3, and Docs for a data model, routes API, scoring engine, policy model, wireflow, roadmap, output modules and prompt set, plus a package.json declaring Next and React and no source files. A designed app: fully specified, not built. The README says it 'will work as is'; the repo has no app code. Missing for the next stage: the app source (the AI-Framing-Study repo shows the exercise itself running as a page).",
+  "principle": "Turn ambiguous-prompt answers into descriptive patterns, not scores.",
+  "organ": "judgment",
+  "readme_drift": "README says ready to use today; repo has specs and no source",
+  "last_commit": "2026-01-09",
+  "next_stage": "Build the app from Docs/ to reach 'partial'."
+ },
+ "Free-Game-Hub": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "187 files behind a games.json index. A shelf, not a system.",
+  "principle": "Every game records its lineage and contributor; one games.json index lists them all.",
+  "organ": "face",
+  "readme_drift": "",
+  "last_commit": "2026-07-02",
+  "next_stage": ""
+ },
+ "Frontier-Empires": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "spec",
+  "verified": "code",
+  "why": "Three.js RTS/observatory where public AI-model characteristics are mapped to fictional civilizations; model roster lives in an editable JSON registry (last commits 8/18). A place; the roster is data you edit by hand. (second reader: src/ is 1,109 lines (scene, HUD, capabilityMapper, registry); the simulation, persistence and any war are not built. Designed, not built yet)",
+  "principle": "Drive a whole world from a plain editable JSON roster so a non-coder can change it.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-18",
+  "next_stage": ""
+ },
+ "grok-test-dummy-penguin-2026": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "A connector test Grok made for itself. “Nothing serious here.”",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-05-10",
+  "next_stage": ""
+ },
+ "heartbeat-observatory": {
+  "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
+  "verified": "code",
+  "why": "3,201 files and commits through 2026-10-14. Beyond hosting worlds it now runs unattended: .github/workflows/ashgrove-clock.yml advances the Ashgrove town one day per real day (daily cron, writes to Supabase), a daily news episode is committed ('news: episode 2026-10-13'), TV episodes are shipped, and there are live-systems pages for flies, trades and school. HANDOFF.md, TODO.md and ARCHIVE.md (completed work kept verbatim) are the legible record. Was C ('a shell that hosts other worlds'); the platform itself now keeps and advances state. Most of the state sits in Supabase, which I did not open. (second reader: this repo is the ashgrove daily clock, a Vercel cron, the PAM heartbeat API, the fly school page and admin/control; read by directory and key files, not in full (3,200+ files))",
+  "principle": "Charter clause: when a document disagrees with reality, reality wins and the document is amended.",
+  "organ": "face + world + the clock for several organs",
+  "readme_drift": "README still describes it as a living 3D town with a social feed; it now also runs scheduled clocks, daily news, TV and the fly-school pages",
+  "last_commit": "2026-10-14",
+  "next_stage": ""
+ },
+ "heartbeat-test": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Three files. A pulse check for the heartbeat engine. (second reader: it ran once: a scheduled Grok task wrote MARKER: HEARTBEAT-OK-0000 and read one back from Drive; the one measurement behind the June designs)",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-06-01",
+  "next_stage": ""
+ },
+ "Jaron-Game-World-Foundation": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "A personal standards library for games (controls, cameras, vehicles, placement) with registry.json, AGENTS.md and a v0.1 control certification playground. Parts bin.",
+  "principle": "Certify a control scheme once and reuse it, so no project rediscovers it.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-31",
+  "next_stage": ""
+ },
+ "Keava-Owent": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Changed since the old judgment. On 2026-09-24 the fifteen missing subsystems were committed ('Keava now runs'): store (SQLite), kernel loop with continuity, live-reference engine, consumption and contribution ledgers, relational memory, spark generator, membrane (human-owned permissions the system can read but not write), approval queue, receipts, transport. pytest passes (10 tests) and one cycle was run on Jaron's machine with email off. It is a loop that has run once by hand; it is not scheduled and data/ is empty, so nothing is kept yet. Was D. (second reader: commit 2026-09-24 restored all modules, 10 tests pass, one cycle ran; ledger/contribution.py returns UNMEASURED instead of self-scoring; designed, built and run once, nothing schedules it, so it runs but does not yet accumulate)",
+  "principle": "A loop that finds its own gaps, meters what it consumes, and records contribution as recorded-not-scored instead of grading itself.",
+  "organ": "core",
+  "readme_drift": "README top banner carries the 8/10 'not a running system' note below the 9/24 'now runs' note; body is still the design",
+  "last_commit": "2026-09-24",
+  "next_stage": "Schedule the loop and let it keep a ledger in data/ to reach 'accumulates'."
+ },
+ "Kurearthis": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Unreal project with an accumulating BUILDLOG and archive, a world model and a charter. The build process keeps a record; the game does not.",
+  "principle": "Keep a BUILDLOG plus an archive so a build can be resumed cold by another AI.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-06-22",
+  "next_stage": ""
+ },
+ "live-reference-principle": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "Constraints and signals are only valid while connected to what they reference; frozen references become gestures. The acceptance test for both tiers above, and the reason this page rebuilds itself.",
+  "principle": "A rule or signal is only valid while still connected to the thing it refers to; frozen references become gestures.",
+  "organ": "long-term memory",
+  "readme_drift": "",
+  "last_commit": "2026-05-28",
+  "next_stage": ""
+ },
+ "livi-organism": {
+  "tier": "B",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "live",
+  "why": "Playable companion whose body is a cell lattice (nutrient diffusion, metabolism, division, dormant seed on starvation). Persistence is now exercised: CHANGELOG 0.6.1 (2026-10-08) fixes a bug found on a daily-tended Livi restored from a cloud copy, with local, IndexedDB and cloud copies, Restore History, aging across absence, and tests (restore-absence, save-compat). Absence is simulated on return rather than running while you are away, so still B; the old 'no database holds livi tables' judgment is out of date. I did not open the database. (second reader: NEXT_AI_HANDOFF (7/29) says the cloud schema is applied with RLS verified, which the old judgment contradicted; probably different Supabase projects; one live check would make it A or leave it B)",
+  "principle": "Age the creature across your absence from the newest real sign of presence, and never invent time you cannot show.",
+  "organ": "working memory",
+  "readme_drift": "",
+  "last_commit": "2026-10-08",
+  "next_stage": ""
+ },
+ "MachineManager": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Python supervisor (24 modules): job registry, scheduler, state store, health checks, bounded recovery, restart recovery, escalation, redaction, sanitized telemetry published to a public dashboard every ~2 minutes; eval scenarios (worker death, stall, restart). Last telemetry commit 2026-09-01, so dormant for six weeks as of today. (second reader: dashboard/data/latest.json stopped at 2026-09-01; A that day, B now; whether the Windows task still runs is not knowable from the repo)",
+  "principle": "Supervise workers by evidence of progress, recover a bounded number of times, then escalate to a human.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-09-01",
+  "next_stage": "Restart the publisher; telemetry stopped 2026-09-01."
+ },
+ "MachineManager-RevenueLab": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Mission manager with SQLite event ledger, worker adapters, a native CUDA SHA-256d Stratum worker verified against a loopback mock, and a privacy layer for public snapshots. Control loop and tests exist; nothing in the repo shows it running unattended.",
+  "principle": "Process liveness is not evidence of useful work: demand a fresh aggregate progress cursor from every worker.",
+  "organ": "money",
+  "readme_drift": "",
+  "last_commit": "2026-09-02",
+  "next_stage": "Run the worker under the manager and keep the ledger."
+ },
+ "market-architect": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "TypeScript monorepo with vitest and no persistence layer.",
+  "principle": "Teach regimes and risk with a deterministic simulator that never touches a real market.",
+  "organ": "money",
+  "readme_drift": "",
+  "last_commit": "2026-07-14",
+  "next_stage": ""
+ },
+ "memory-as-spatial-arrangement": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "runs",
+  "verified": "code",
+  "why": "A working hypothesis with sim_unit_distance_memory.py and recorded first results — research that actually ran. Implemented inside Keava-Owent.",
+  "principle": "Memory medium as a spatial arrangement problem: compare linear storage against arranged storage in simulation.",
+  "organ": "long-term memory",
+  "readme_drift": "",
+  "last_commit": "2026-05-26",
+  "next_stage": ""
+ },
+ "MindGames": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Fifty files. A screen becomes a perspective-aware window, then a traversable portal — recursive worlds, cross-reality causality, scale shifts. Nothing retained between visits.",
+  "principle": "A screen becomes a window and then a portal to a nested world.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-09",
+  "next_stage": ""
+ },
+ "Movie-Theater-Three.js-Asset-": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "448-seat cinema asset, procedural geometry, Playwright tests; 9/24 commits add a shared screen synced by a host room. Parts bin feeding Heartbeat TV.",
+  "principle": "A shared screen whose stop command from someone without rights changes nothing.",
+  "organ": "face",
+  "readme_drift": "",
+  "last_commit": "2026-09-24",
+  "next_stage": ""
+ },
+ "natora-language": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Constructed language with spec/, lexicon/, conformance tests, a deterministic parser/validator, decisions/ and issues/ folders kept visible, plus a Next.js reference page. Material that grows only when someone edits it.",
+  "principle": "A regular, reversible language with conformance tests could be the teaching language for a small model.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-09-02",
+  "next_stage": ""
+ },
+ "Neuro-consciousness-and-chemistry-": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "“AGI won't come from perfect code or flawless hardware. It comes from a system learning to keep itself going under real constraints.” ECIH's thesis, stated three months before ECIH.",
+  "principle": "A system learns resilience by keeping itself going under real constraints.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-03-09",
+  "next_stage": ""
+ },
+ "New-Age-Of-War": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Unreal C++ war game.",
+  "principle": "",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-13",
+  "next_stage": ""
+ },
+ "northstar-addressable-world": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "First-person parkour game and a proof of an addressable-world engine — every place in the world has a stable name.",
+  "principle": "Every place in the world has a stable name and grid address.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-02",
+  "next_stage": ""
+ },
+ "official-watch-briefs": {
+  "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
+  "verified": "code",
+  "why": "79 dated markdown briefs (global/ and homeland/) written by Grok runs through 2026-10-13 with source-reliability labels; index.md points at the latest. README calls it a private archive but the repo is public. Runs without Jaron and the record reads fine on return.",
+  "principle": "Label every item by how it is known (official statement, government claim, independent report) so reliability travels with the fact.",
+  "organ": "senses",
+  "readme_drift": "README says private archive, repo is public",
+  "last_commit": "2026-10-13",
+  "next_stage": ""
  },
  "Online-NPC-City-": {
-  "tier": "E",
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
   "verified": "code",
-  "why": "Sixteen files around a single index.html — a scaffold of the living-town idea, superseded by ashgrove-npc-online."
+  "why": "Walkable town with 49 buildings (13 house types, 10 civic), solved interiors, 1,414 movable furniture items, edit mode, scripted tour. No build step, 13 JS files, last fix commits 2026-08-04. Was E ('scaffold superseded'); it is a finished place that ashgrove-npc-online started from.",
+  "principle": "Give every object a permanent id on a metric grid so it can be moved and inspected.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-04",
+  "next_stage": ""
+ },
+ "orbit-salvage": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Single-file canvas orbital-recovery game (game.js ~14 KB), no backend. Same each time you play.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-09-23",
+  "next_stage": ""
+ },
+ "orchestra": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "77 files: five AI systems asked eight questions per cycle, every capture kept, two synthesizers, a 15-line append-only events.jsonl and a signal tracker. Last commit 2026-07-19, so no new cycle in three months; the record is intact and readable but the cycle stopped. The 'watch' repo is its descendant. (second reader: one cycle on 2026-07-18 (events.jsonl has 15 SIGNAL_ENTERED lines, no later lifecycle event); it was A at its last run and is D now; watch/SYSTEM.md says its scope was inherited, its archive rules were not)",
+  "principle": "Preserve disagreement: keep every capture and compare two synthesizers against falsifiable signals.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-07-19",
+  "next_stage": ""
+ },
+ "Orchestra-Financial-": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "README is a title only. A placeholder for the financial arm of Orchestra: planned, nothing written. (second reader: a one-line placeholder; the financial arm was built elsewhere (the desk, market-feed))",
+  "principle": "",
+  "organ": "money",
+  "readme_drift": "",
+  "last_commit": "2026-07-12",
+  "next_stage": "Spec stage needs a written design."
+ },
+ "origin-works": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Three.js world where manufactured things are made in an assembly graph: a saw CUT splits a parent into piece, kerf and remainder, durations come from machine specs, and tools/validate-knowledge.mjs recomputes every derived number before any geometry. Spec layer written first. A rigorous place; does not run without you.",
+  "principle": "A number without a check is not evidence: validate the specification layer before building anything on it.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-15",
+  "next_stage": ""
+ },
+ "Pacing-the-Frontier-and-the-Thing-Underneath-It": {
+  "tier": "D",
+  "kind": "book/writing",
+  "stage": "n/a",
+  "verified": "code",
+  "why": "One 11 KB written draft: a weekend timeline holding two perspectives. Companion to the Substrate Demand Cascade. (second reader: an essay: measured versus chosen columns on one weekend of AI-industry events, so book/writing rather than a theory)",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-09-13",
+  "next_stage": ""
+ },
+ "pam-continuum": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Daily GitHub workflow (daily-pulse.yml) commits a heartbeat to data/activity.json through 2026-10-13 and rebuilds a Pages dashboard; it also holds schemas, missions, signals, sources. Honest limit: the README says bootstrap mode and the only thing kept is 'Scheduler is healthy; no world data was collected'. Planned and not yet running: source adapters, browser-session collection, relation graph, mission engine. Passes the three tests narrowly. (second reader: the live pam_* rows the old judgment cited belong to heartbeat-observatory's local-agent PAM, not this repo; state.json here shows 0 live sources and 79 heartbeat runs, so it is B: a heartbeat only)",
+  "principle": "Start every long-running system with a daily heartbeat that says plainly what it did and did not collect.",
+  "organ": "senses",
+  "readme_drift": "",
+  "last_commit": "2026-10-13",
+  "next_stage": "Add one real source adapter so the pulse carries data."
+ },
+ "parkworks-tycoon": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Mobile-first 3D park tycoon (ParkGame.ts 68 KB, AssetFactory 159 KB) with save/load and computeAwayProgress: the park pays crew wages while you are away and an away report shows what happened. Implements the 'legible on return' test, but only as a computed catch-up inside a game. Close to B. (second reader: rates it B: awayReport.ts projects offline earnings from the same constants as the live sim; kept at C here because the cloud save backend is in another repo and this one saves to localStorage)",
+  "principle": "Compute what happened while the user was away from elapsed time and show it as a return report.",
+  "organ": "working memory",
+  "readme_drift": "",
+  "last_commit": "2026-08-15",
+  "next_stage": ""
+ },
+ "persistent-memory-substrate": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "One file. The repo contains the README and nothing else — the substrate is stated, never implemented. It remains the clearest statement of the criterion on the account, and it is a statement.",
+  "principle": "A system class where new state is appended and prior state is never removed.",
+  "organ": "permanent memory",
+  "readme_drift": "",
+  "last_commit": "2025-12-13",
+  "next_stage": ""
+ },
+ "Perspective-Environmental-framework-Exercise": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Six ambiguous prompts where the choice is a decoy and the reasoning is the signal. Run across nine models — one of the few repos here that produced data.",
+  "principle": "A decoy-choice exercise: the reasoning, not the pick, is the signal.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-02-23",
+  "next_stage": ""
+ },
+ "Phone-AI-App-builds": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Single index.html of phone-built apps (a city job sim and others) with a Pages workflow; last commit 2026-07-30.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-07-30",
+  "next_stage": ""
+ },
+ "physics-lab-sandbox": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "Zero files. Described, never committed.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-07-03",
+  "next_stage": ""
+ },
+ "Pictures-screenshots": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Gallery viewer plus a phone upload panel that commits photos through the GitHub API. imgs/ was empty on 8/10; a Grok MCP proof screenshot was added on 8/17, so it holds one image. Was E.",
+  "principle": "Let a phone upload straight into a public media library an AI can read by URL.",
+  "organ": "senses",
+  "readme_drift": "README top banner says imgs/ is empty; one image exists since 8/17",
+  "last_commit": "2026-08-17",
+  "next_stage": "Needs real images to be a library."
+ },
+ "Pieces-Of-My-Life-": {
+  "tier": "D",
+  "kind": "life-record",
+  "stage": "n/a",
+  "verified": "code",
+  "why": "One file, read in full. A life recorded age by age with the place attached to each stage, and the source document for other papers on this account.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-06-12",
+  "next_stage": ""
+ },
+ "Pirate-World-Sea-Of-Fortune-": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "live",
+  "why": "Three.js/React pirate naval game with crew NPCs, hull damage, touch controls; Supabase wired in code. Last commit 2026-07-11.",
+  "principle": "",
+  "organ": "world",
+  "readme_drift": "README live-demo links are placeholders (your-vercel-url)",
+  "last_commit": "2026-07-11",
+  "next_stage": ""
+ },
+ "polymarket-us-agent": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "MCP server exposing Polymarket US market and account primitives with no trading policy, plus remote_bridge.py that claims owner messages and scheduled continuations from a Supabase queue and feeds one persistent OpenClaw/Qwen session, publishing sanitized state. Autonomy is real; policy and limits live elsewhere. Contains a Supabase publishable (public by design) key as a default. (second reader: rates it partial and notes it was replaced, not finished, by desk.py and desk-trade.py; server.py _observed/_redact keeps the exchange key and the decider apart in code)",
+  "principle": "The tool server offers primitives only; judgment lives in the model and limits live in scripts, so the two can change independently.",
+  "organ": "money",
+  "readme_drift": "",
+  "last_commit": "2026-09-10",
+  "next_stage": "Keep run logs readable in the repo."
+ },
+ "prediction-research-system": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Python research subsystem: SQLite store where every mutation has an append-only event, immutable probability forecasts, outcome scoring, model comparison, criteria hashes, CI and a runtime checkpoint. Local software, explicitly not an always-running service. Does not recommend or place trades. (second reader: 102 markets and 255 events but zero forecast rows and no scheduled ingest; audit() re-derives every hash and CI runs it, the strongest hash chain on the account, unused)",
+  "principle": "Freeze each forecast before the outcome is known, hash the criteria, then score it later - an exam for judgment.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-09-07",
+  "next_stage": "Schedule scan/ingest so it runs without a person."
+ },
+ "President-Sim": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "One 35KB index.html carrying twenty scenarios drawn from real 2025–26 events, each decision moving five pillars. Complete and self-contained.",
+  "principle": "Twenty scenarios from real events, each moving five pillars.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-09-05",
+  "next_stage": ""
+ },
+ "reality-skin-engine": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "spec",
+  "verified": "code",
+  "why": "Twenty-three markdown files, four JSON, no source code: design principles, system architecture, terminology, decision log, an MVP blueprint (phone AR that labels surfaces and switches era skins, same geometry, different rendering), and empty-but-named engine/, runtime/, tools/, demos/ folders with READMEs. A designed system, not built yet. Missing for the next stage: any runtime code, starting with the phone AR prototype. Was C.",
+  "principle": "Separate physical geometry from its visual interpretation so one real place can be rendered many ways.",
+  "organ": "senses",
+  "readme_drift": "",
+  "last_commit": "2026-07-01",
+  "next_stage": "Build the MVP (labeled surfaces plus two era skins) to reach 'partial'."
+ },
+ "Reflector-To-API-Bridges-": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "partial",
+  "verified": "code",
+  "why": "14KB of implementation in “Reflector Code”. Translates domain commands into AETHERSPAN frames and hands back the response. Stateless by design.",
+  "principle": "Translate domain commands into frames for a bridge and hand the response back; stateless adapter.",
+  "organ": "senses",
+  "readme_drift": "",
+  "last_commit": "2025-12-17",
+  "next_stage": ""
+ },
+ "rift-clash": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Server-authoritative 5v5 MOBA with a full bot roster, everything — champions, portraits, item icons, terrain, particles — generated at runtime. The match ends and the world ends with it.",
+  "principle": "Generate every asset at runtime so there is nothing to host.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-26",
+  "next_stage": ""
+ },
+ "robot-evolution-lab": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Three.js MEC-01 robot built from measured parts with an assemblyValidator that checks joint interfaces. Same each visit.",
+  "principle": "Validate that every assembled joint fits its neighbour against stated measurements.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-26",
+  "next_stage": ""
+ },
+ "rustfall": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Wasteland survival game with host-authoritative online co-op on Supabase (rooms, lease failover), trader, base building. Latest commits (8/7-8/15) extended the map from 200 m to 400 m and moved the backend onto Heartbeat's own Supabase project instead of a separate one. Whether tables hold rows is not something I checked. (second reader: no Supabase files, migrations or client in the repo; src/game/save.ts is one localStorage blob (SAVE_VERSION 2), so it is a place, C not B)",
+  "principle": "Host-authoritative rooms with lease failover: if the host drops, another client takes the lease.",
+  "organ": "world",
+  "readme_drift": "README still says 200x200 m; commits extended it to 400 m and moved multiplayer to Heartbeat's Supabase",
+  "last_commit": "2026-08-15",
+  "next_stage": ""
+ },
+ "showcase-world": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Material-first inspection-ready downtown: real photographed material maps on a deterministic grid with stable asset IDs and collision proxies. Built from Tessera and ModKit parts.",
+  "principle": "Real photographed material maps on a deterministic grid with stable ids.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-02",
+  "next_stage": ""
+ },
+ "signal-drift": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Small canvas arcade game with a watch.html mode where Codex plays live and an operator cockpit. Mostly a game; the watch page is the interesting part.",
+  "principle": "Let a viewer watch an AI play live and see its operator controls.",
+  "organ": "face",
+  "readme_drift": "",
+  "last_commit": "2026-08-12",
+  "next_stage": ""
+ },
+ "signal-pebble-echo-2917": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "Three files. Reads, in full: “are you reading me yet”.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-05-10",
+  "next_stage": ""
+ },
+ "SpaceYouLand": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "partial",
+  "verified": "code",
+  "why": "739 files of Unreal project with combat checkpoint volumes and a MEMORY.md for its agents. The engine-side slice of Space You Land.",
+  "principle": "Keep a MEMORY.md in the repo so engine-side agents resume cold.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-06-20",
+  "next_stage": ""
+ },
+ "spectral-gt-rs": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "A procedural sports car authored in Blender, shipped with the editable source scene, a game-ready GLB and a browser drive test.",
+  "principle": "Ship the editable source scene beside the game-ready export.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-01",
+  "next_stage": ""
+ },
+ "Summary-Of-repos-Memory-linker": {
+  "tier": "D",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "A hand-built data center page and a repos.json plus 54 markdown summaries of 49 repos, generated 2026-07-12 and not regenerated. The account now has 107 repos, so this is a frozen snapshot of the thing it warned about; accumulation-sort replaces it. Was A; there is no mechanism in the repo that re-runs it.",
+  "principle": "Make a verified map from fresh clones, not READMEs, then render it as a world where each machine is a button.",
+  "organ": "long-term memory",
+  "readme_drift": "README presents it as the current map of the account",
+  "last_commit": "2026-07-12",
+  "next_stage": "Regenerate on a schedule (accumulation-sort already does the list)."
+ },
+ "surface-material-lab": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "218 files. Turns real photographed surfaces into reusable inspectable material packages. Deliberately independent of the game repos — a materials library, not a world.",
+  "principle": "Turn a photographed surface into a reusable material package with provenance.",
+  "organ": "senses",
+  "readme_drift": "",
+  "last_commit": "2026-08-01",
+  "next_stage": ""
+ },
+ "SYL-Full-Game": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "partial",
+  "verified": "code",
+  "why": "Large Three.js space game with CANON.md, DECISIONS, HANDOFF and 143-check scene validation. README calls it a server-authoritative persistent galaxy, but server.js is a 33-line static file server, so persistence lives only in local save. A world-scale foundation, not a running shared world.",
+  "principle": "Canon file with a traceability document so every game rule can be traced to a decision.",
+  "organ": "world",
+  "readme_drift": "README says server-authoritative persistent galaxy; server.js is a 33-line static server",
+  "last_commit": "2026-08-16",
+  "next_stage": ""
+ },
+ "SYL-Neighborhood": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Two files. A walkable inspectable neighbourhood prototype on Tessera's principles — stable IDs, metric grid, one-key debug layer.",
+  "principle": "",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-04",
+  "next_stage": ""
+ },
+ "SYL-Testing-pvp": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Nine files around a single server.js — a PvP test bed.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-06-07",
+  "next_stage": ""
+ },
+ "tessera-worldkit": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "230 files. An AI-readable world-building framework with a public workshop — ships the placement contract so agents stop guessing dimensions. The most reusable thing in this tier.",
+  "principle": "Ship the placement contract (stable ids, metric grid, one-key debug layer) so agents stop guessing dimensions.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-25",
+  "next_stage": ""
+ },
+ "testing-ai-workforce-loop": {
+  "tier": "E",
+  "kind": "test/stub",
+  "stage": "idea",
+  "verified": "code",
+  "why": "One file, one line.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-05-31",
+  "next_stage": ""
+ },
+ "the-current": {
+  "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
+  "verified": "live",
+  "why": "Confirmed in code: a Supabase edge function (the-current-tick) runs on a schedule as the single authority over the shared world, drawing fresh entropy per world day; an archive migration retires eras and keeps the entropy inputs; 92 TS files of deterministic civilization simulation with IndexedDB persistence and export/import. Last commit 2026-07-24. The live database was not re-opened here.",
+  "principle": "The server draws each day's randomness only at the moment the day runs, so nobody can precompute or fork the future.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-24",
+  "next_stage": ""
+ },
+ "the-defender-3d": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Courtroom strategy across opening, evidence, cross-examination, objection and closing phases, with a jury that visibly reacts.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-07-14",
+  "next_stage": ""
+ },
+ "The-Engine-Of-Division-": {
+  "tier": "D",
+  "kind": "book/writing",
+  "stage": "n/a",
+  "verified": "code",
+  "why": "Twenty-two chapters plus a summary and TOC; a complete free book. Note: the repo has a malformed folder name that cannot be checked out on Windows (read through git instead).",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2025-12-22",
+  "next_stage": ""
+ },
+ "THE-ENVIRONMENT-CONSTRAINT-INTELLIGENCE-HYPOTHESIS-ECIH-": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "Intelligence as self-maintenance under constraint. Five testable predictions; the closing unfalsifiable argument is the weak part.",
+  "principle": "Intelligence as self-maintenance under constraint; environment shapes cognition.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-03-09",
+  "next_stage": ""
+ },
+ "The-Free-Online-Neighborhood-": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Gridtown, a walkable 3D neighborhood prototype on GitHub Pages. The repo carries a Drizzle schema and Cloudflare worker scaffold from its template, but nothing in app/ or src/ uses the database. Was B; no persistence is in use.",
+  "principle": "",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-04",
+  "next_stage": ""
+ },
+ "The-Last-Theory.-": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "README and licence only.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-06-12",
+  "next_stage": ""
+ },
+ "the-necklace-show": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "An 86KB app.js behind a fifteen-chapter story about a necklace that reveals the memories held by objects — and a canonical-archive keeping the original one-prompt Kimi output, zip included, beside the version that grew from it. The never-delete pledge, applied inside a repo.",
+  "principle": "Keep the original one-prompt output beside the version that grew from it.",
+  "organ": "face",
+  "readme_drift": "",
+  "last_commit": "2026-09-26",
+  "next_stage": ""
+ },
+ "THE-SHIFTING": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Vite/TypeScript app with a deploy workflow. No persistence.",
+  "principle": "A maze that mutates the space you are not looking at.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-05",
+  "next_stage": ""
+ },
+ "The-Structural-Conflict": {
+  "tier": "D",
+  "kind": "book/writing",
+  "stage": "n/a",
+  "verified": "code",
+  "why": "A geopolitical timeline from Ottoman Palestine to 2026, written to hold both perspectives at once.",
+  "principle": "Hold both perspectives in one timeline.",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-03-27",
+  "next_stage": ""
+ },
+ "The-Substrate-Demand-Cascade": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "One 28 KB written hypothesis (Sept 7): automation may raise compute demand twice, via machines and again via humans.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-09-07",
+  "next_stage": ""
+ },
+ "The-Thinking-Gym": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Sixteen markdown files: exercises, principles, templates and a versions folder with a preservation rule. No code; exercises are used by hand.",
+  "principle": "Practice reasoning and calibration like a gym, with versions preserved.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-07-31",
+  "next_stage": ""
+ },
+ "theater-vs-record-trump-drug-clemency": {
+  "tier": "D",
+  "kind": "book/writing",
+  "stage": "n/a",
+  "verified": "code",
+  "why": "Stated position against documented record, with dated figures and sourcing. The same theater-versus-record test the Live-Reference Principle applies to systems.",
+  "principle": "Compare stated position against documented record.",
+  "organ": "judgment",
+  "readme_drift": "",
+  "last_commit": "2026-05-30",
+  "next_stage": ""
+ },
+ "THEY-NEVER-LEFT": {
+  "tier": "D",
+  "kind": "theory/principle",
+  "stage": "idea",
+  "verified": "code",
+  "why": "A structured thought experiment, explicit up front that it claims no truth — only the most internally consistent alternative explanation for a set of observations.",
+  "principle": "",
+  "organ": "none",
+  "readme_drift": "",
+  "last_commit": "2026-03-12",
+  "next_stage": ""
+ },
+ "unfinished-island": {
+  "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
+  "verified": "code",
+  "why": "World with a computer whose resident (a local model) writes child worlds; tools/cycle.mjs runs hourly via a Windows task with a lockfile, validates proposals with a deterministic sim, allows one recorded repair attempt, and commits each cycle. 48 cycles and 40 child worlds recorded by 2026-09-07, then no commits for five weeks, so currently stalled.",
+  "principle": "Propose, validate in a deterministic simulator, allow one recorded repair, then commit the cycle.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-09-07",
+  "next_stage": "Re-enable the hourly worker; stalled since 2026-09-07 (cycle 48)."
+ },
+ "vibecoding-training-grounds-": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Newest repo on the account. Vite/TS with agent instructions and a deploy workflow.",
+  "principle": "Intent, code, visual logic, direct manipulation and binary as views of the same world model.",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-08-09",
+  "next_stage": ""
+ },
+ "wasteland-commons": {
+  "tier": "B",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "live",
+  "why": "Cooperative post-collapse game for a parent and child with server/ relay, Supabase durable sessions, tests and release docs. README says the current deployment is still instance-local. Last commit 2026-08-02.",
+  "principle": "Resume a session by identity across devices, so a parent and child can pick up on different phones.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-02",
+  "next_stage": ""
+ },
+ "watch": {
+  "tier": "A",
+  "kind": "system",
+  "stage": "accumulates",
+  "verified": "code",
+  "why": "Daily captures from claude, codex, deepseek, grok, kimi, perplexity, qwen into dated files by scheduled tasks, plus a brief, market-feed and collectors; wrap_check.py counts hedges the organizer added that no source used. 131 markdown files, commits daily through 2026-10-13.",
+  "principle": "Measure whether the summarizing seat changed the temperature of what its sources said (hedges added that no source used).",
+  "organ": "senses",
+  "readme_drift": "",
+  "last_commit": "2026-10-13",
+  "next_stage": ""
+ },
+ "World-Printer-Lab-For-3D-Worlds": {
+  "tier": "C",
+  "kind": "game/world",
+  "stage": "runs",
+  "verified": "code",
+  "why": "World generation lab with a version inventory.",
+  "principle": "Fabricate world parts visibly, then snap them together.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-07-24",
+  "next_stage": ""
+ },
+ "worldbuilding-lab": {
+  "tier": "C",
+  "kind": "tool",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Worldbuilding doctrine v2/v3 plus texture and manifest discipline. A style guide with a renderer attached.",
+  "principle": "Build the hero asset in a testbed before it goes into a game.",
+  "organ": "world",
+  "readme_drift": "",
+  "last_commit": "2026-08-04",
+  "next_stage": ""
+ },
+ "YES-NO-Environment-Perspective-You-Myself-Observer-Paradox": {
+  "tier": "D",
+  "kind": "book/writing",
+  "stage": "n/a",
+  "verified": "code",
+  "why": "Twelve chapters, written Dec 2024 to Feb 2025, primarily for your children.",
+  "principle": "",
+  "organ": "core",
+  "readme_drift": "",
+  "last_commit": "2026-02-23",
+  "next_stage": ""
+ },
+ "zeus-ai": {
+  "tier": "B",
+  "kind": "system",
+  "stage": "runs",
+  "verified": "code",
+  "why": "Local FastAPI/React desktop workbench over Ollama: editable memory store, conversation store, audit log, knowledge watcher (checks every 30 s), and an active Heartbeat every 15 minutes that writes observations and a curiosity-task queue locally; plus a training/ path for Zeus-Tiny. models/ is empty in the repo and the README says remote sync is designed, not implemented. The keeping happens on the user's machine, not in the repo. (second reader: the heartbeat is an asyncio loop inside the app process (heartbeat_service.py), so it keeps things only while the app is open; B, not A)",
+  "principle": "A heartbeat that observes the system's own state and queues curiosity tasks, with provenance for each.",
+  "organ": "working memory",
+  "readme_drift": "",
+  "last_commit": "2026-08-11",
+  "next_stage": ""
  }
 }
